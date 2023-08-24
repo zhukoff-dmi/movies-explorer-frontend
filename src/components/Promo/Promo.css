@@ -1,0 +1,123 @@
+.promo {
+    border-radius: 10px;
+    background: #272727;
+    margin: 20px 40px 0 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.promo__title {
+    color: #FFF;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+    text-align: center;
+    margin: 0;
+    max-width: 730px;
+    margin-top: 160px;
+}
+
+.promo__navigation {
+    margin-top: 151px;
+    margin-bottom: 40px;
+}
+
+.promo__more {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    list-style-type: none;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.promo__nav-button {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.promo__more-list {
+    display: flex;
+    background-color: #303030;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    height: 36px;
+    width: 96px;
+    line-height: 16px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.promo__more-list:hover {
+    opacity: .7;
+}
+
+@media screen and (max-width: 768px) {
+    .promo {
+        margin: 20px;
+        margin-bottom: 0;
+    }
+
+    .promo__title {
+        margin-top: 350px;
+        font-size: 40px;
+        line-height: 52px;
+        letter-spacing: -1.6px;
+        max-width: 680px;
+    }
+
+    .promo__navigation {
+        margin-top: 314px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .promo__title {
+        font-size: 29px;
+        line-height: 37px;
+        letter-spacing: -1.16px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .promo {
+        margin: 14px 14px 0 14px
+    }
+
+    .promo__title {
+        margin-top: 220px;
+    }
+
+    .promo__more {
+        gap: 6px;
+    }
+
+    .promo__more-list {
+        width: 82px;
+        height: 26px;
+    }
+
+    .promo__navigation {
+        margin-top: 212px;
+        margin-bottom: 17px;
+    }
+
+    .promo__nav-button {
+        font-size: 10px;
+    }
+}
