@@ -94,7 +94,7 @@
     .project__title {
         font-size: 20px;
         letter-spacing: -0.8px;
-        margin-bottom: 18px;
+        margin-bottom: 23px;
     }
 
     .project__text {
@@ -132,11 +132,13 @@
         font-size: 18px;
         line-height: normal;
         letter-spacing: -0.72px;
+        padding-bottom: 25px;
     }
 
     .project__title {
         font-size: 18px;
         letter-spacing: -0.72px;
+        margin-bottom: 16px;
     }
 
     .project__text {

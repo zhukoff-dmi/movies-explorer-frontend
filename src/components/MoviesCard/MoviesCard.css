@@ -47,7 +47,7 @@
     justify-content: center;
 }
 
-.movie-card__button {
+.movie-card__like {
     width: 100px;
     height: 29px;
     margin: 16px 0;
@@ -64,14 +64,32 @@
     cursor: pointer;
 }
 
-.movie-card__button:hover {
+.movie-card__like:hover {
     opacity: .7;
 }
 
-.movie-card__button-saved {
+.movie-card__like_active {
     background-image: url(../../images/save_icon.svg);
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.movie-card__like_inactive {
+    background-image: url(../../images/movie-card\ delete.svg);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 29px;
+    border: 0;
+    padding: 0;
+    margin: 16px 0;
+    cursor: pointer;
+}
+
+.movie-card__like_inactive:hover {
+    opacity: .7;
 }
 
 

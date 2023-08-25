@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Register() {
     return (
-        <div className="register" id="signup">
+        <main className="register" id="signup">
             <img className="register__logo" src={logo} alt="Логотип" />
             <h1 className="register__title">Добро пожаловать!</h1>
             <form className="register__form">
@@ -34,7 +34,7 @@ function Register() {
                 <h3 className="register__subtitle">Уже зарегистрированы?</h3>
                 <Link className="register__link" to="/signin">Войти</Link>
             </div>
-        </div>
+        </main>
     );
 }
 

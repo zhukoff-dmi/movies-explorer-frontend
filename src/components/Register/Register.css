@@ -52,7 +52,7 @@
 }
 
 .register__input:focus {
-    outline: none;
+    outline: 1px solid aliceblue;
 }
 
 .register__error {
@@ -117,6 +117,10 @@
 @media screen and (max-width: 768px) {
     .register__title {
         margin-bottom: 40px;
+    }
+
+    .register__logo {
+        margin-top: 231px;
     }
 }
 

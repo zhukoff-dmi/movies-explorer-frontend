@@ -3,8 +3,8 @@ import "./Profile.css";
 
 function Profile(props) {
     return (
-        <div className="profile">
-            <h2 className="profile__title">Привет, Виталий!</h2>
+        <main className="profile">
+            <h1 className="profile__title">Привет, Виталий!</h1>
             <form className="profile__form">
                 <label className="profile__input-container">
                     <span className="profile__input-label">Имя</span>
@@ -18,7 +18,6 @@ function Profile(props) {
                         required={true}
                     />
                 </label>
-                <div className="profile__line"></div>
                 <label className="profile__input-container">
                     <span className="profile__input-label">E-mail</span>
                     <input
@@ -37,7 +36,7 @@ function Profile(props) {
             <Link to="/" className="profile__btn-text">
                 Выйти из аккаунта
             </Link>
-        </div>
+        </main>
     );
 }
 

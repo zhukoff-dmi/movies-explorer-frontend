@@ -52,7 +52,7 @@
 }
 
 .login__input:focus {
-    outline: none;
+    outline: 1px solid aliceblue;
   }
 
 .login__error {
@@ -112,6 +112,12 @@
     line-height: normal;
     text-decoration: none;
     margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .login__logo {
+        margin-top: 232px;
+    }
 }
 
 @media screen and (max-width: 450px) {

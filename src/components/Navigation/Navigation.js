@@ -21,8 +21,8 @@ const Navigation = (props) => {
             >Сохранённые фильмы</NavLink>
             <NavLink to="/profile" className="navigation__link"
                 onClick={props.onClose}>
-                <div className="header__profile-link-logo"></div>
-                <p className="header__profile-link-text">Аккаунт</p>
+                <div className="navigation__profile-link-logo"></div>
+                <p className="navigation__profile-link-text">Аккаунт</p>
             </NavLink>
         </nav>
     );

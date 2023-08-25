@@ -97,16 +97,25 @@
 
 .header__films-link {
     color: #FFF;
-    font-family: 'Inter';
     text-align: right;
-    font-size: 14px;
     font-weight: 500;
+    font-size: 14px;
     line-height: 18px;
     text-decoration: none;
+    margin-right: 20px;
 }
 
 .header__films-link:hover {
     opacity: .7;
+}
+
+.header__films-link_active {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #FFF;
 }
 
 .header__container-profile {
@@ -117,6 +126,7 @@
     border: 2px solid rgb(170, 170, 170, .2);
     width: 100px;
     height: 32px;
+    margin-left: 29px;
 }
 
 .header__container-profile:hover {
@@ -168,7 +178,7 @@
 
 @media screen and (max-width: 768px) {
     .header {
-        padding: 15px 30px;
+        padding: 17px 30px;
     }
 
     .header__films-link {

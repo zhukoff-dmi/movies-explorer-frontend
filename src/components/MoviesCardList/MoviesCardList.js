@@ -3,22 +3,20 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import { useLocation } from 'react-router-dom';
 
-function MoviesCardList(props) {
+function MoviesCardList() {
     const location = useLocation();
+
     return (
         <div className="movies">
             <div className="movies__card-list">
                 <MoviesCard />
                 <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
                 <Preloader />
             </div>
             <div className="more">
-                {location.pathname !== "/saved-movies" && (
-                    <button className="button__more">Еще</button>
-                )}
+                {location.pathname === "/movies" &&
+                    <button className="more__button">Еще</button>
+                }
             </div>
         </div>
     );

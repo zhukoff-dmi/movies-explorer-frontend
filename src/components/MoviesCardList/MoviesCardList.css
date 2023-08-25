@@ -1,6 +1,6 @@
 .movies {
-    padding: 68px;
-    padding-bottom: 10px;
+    padding: 79px 68px;
+    padding-bottom: 0px;
 }
 
 .movies__card-list {
@@ -13,13 +13,13 @@
 }
 
 .more {
-    padding: 32px 0 80px 0;
+    padding: 32px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.button__more {
+.more__button {
     width: 320px;
     height: 36px;
     border: none;
@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 
-.button__more:hover {
+.more__button:hover {
     opacity: .7;
 }
 
@@ -49,6 +49,10 @@
         column-gap: 24px;
         row-gap: 37px;
         margin-bottom: 14px;
+    }
+
+    .more {
+        padding: 36px 0 80px;
     }
 }
 

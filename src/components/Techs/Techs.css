@@ -21,7 +21,6 @@
     line-height: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px;
     letter-spacing: -0.56px;
     margin: 0;
     margin-bottom: 100px;
@@ -86,6 +85,7 @@
         margin-bottom: 83px;
         font-size: 12px;
         line-height: 18px;
+        letter-spacing: -0.48px;
     }
 
     .techs__item {
@@ -118,7 +118,7 @@
 
 @media screen and (max-width: 370px) {
     .techs {
-        padding: 70px 18px;
+        padding: 72px 18px;
     }
 
     .techs__title {

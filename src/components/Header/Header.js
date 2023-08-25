@@ -1,6 +1,6 @@
 import React from "react";
 import './Header.css';
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Navigation from "../Navigation/Navigation";
 
@@ -23,36 +23,38 @@ function Header(props) {
             </Link>
 
             {location.pathname === "/" && (
-                <div className="header__container-auth">
-                    <Link to="/signup"
+                <nav className="header__container-auth">
+                    <NavLink to="/signup"
                         className="header__register-link">
                         Регистрация
-                    </Link>
-                    <Link to="/signin"
+                    </NavLink>
+                    <NavLink to="/signin"
                         className="header__login-link">
                         Войти
-                    </Link>
-                </div>
+                    </NavLink>
+                </nav>
             )}
 
             {location.pathname !== "/" && (
-            <div className="header__container-nav">
-                <Link to="/movies"
-                    className="header__films-link">Фильмы
-                </Link>
-                <Link to="/saved-movies"
-                    className="header__saved-films-link">Сохранённые фильмы
-                </Link>
+            <nav className="header__container-nav">
+                <NavLink to="/movies"
+                    className={({isActive}) => `header__films-link ${isActive ? 'header__films-link_active' : ''}`}>
+                        Фильмы
+                </NavLink>
+                <NavLink to="/saved-movies"
+                    className={({isActive}) => `header__films-link ${isActive ? 'header__films-link_active' : ''}`}>
+                        Сохранённые фильмы
+                </NavLink>
                 <div className="header__container-profile">
-                    <Link to="/profile"
+                    <NavLink to="/profile"
                         className="header__profile-link">
                         <div className="header__profile-link-logo"></div>
                         <p className="header__profile-link-text">Аккаунт</p>
-                    </Link>
+                    </NavLink>
                 </div><div className="header__menu-item">
                     <button className="header__menu" onClick={openMenu}></button>
                 </div>
-            </div>
+            </nav>
             )}
             {<Navigation isOpen={isMenuOpen} onClose={closeMenu} />}
         </header>
