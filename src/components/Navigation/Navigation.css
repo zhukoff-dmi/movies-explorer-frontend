@@ -1,0 +1,134 @@
+.navigation {
+    background: #202020;
+    min-width: 520px;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    right: 0;
+    top: 0;
+}
+
+.navigation_opened {
+    display: flex;
+}
+
+.navigation__close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    z-index: 3;
+    margin: 27px 22px 0 auto;
+    transition: opacity 0.5s linear;
+    background-image: url("../../images/navigation-close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    padding: 22px 22px 0 0;
+    cursor: pointer;
+}
+
+.navigation__close:hover {
+    opacity: 0.7;
+}
+
+.navigation__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: #000000;
+    opacity: 0.3;
+    height: 100vh;
+    width: 100vw;
+}
+
+.navigation__link {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    z-index: 3;
+    text-decoration: none;
+    transition: opacity 0.5s linear;
+    padding-top: 28px;
+    cursor: pointer;
+}
+
+.navigation__link:hover {
+    opacity: 0.7;
+}
+
+.navigation__link:first-of-type {
+    padding-top: 111px;
+}
+
+.navigation__link:last-of-type {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 617px 0 90px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: 2px solid rgb(170, 170, 170, .2);
+    width: 100px;
+    height: 32px;
+    padding: 7px 0 7px 0;
+}
+
+.navigation__link_active {
+    max-width: fit-content;
+    border-bottom: 1px solid #ffffff;
+}
+
+.navigation__profile-link-text {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    color: #FFF;
+    margin: 0;
+}
+
+.navigation__profile-link-logo {
+    width: 12px;
+    height: 14px;
+    background-image: url(../../images/profile-header-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0;
+    margin-right: 7px;
+}
+
+@media screen and (max-width: 520px) {
+    .navigation {
+        min-width: 320px;
+    }
+
+    .navigation__close {
+        margin: 13px 13px 0 auto;
+    }
+
+    .navigation__link:first-of-type {
+        padding-top: 100px;
+    }
+
+    .navigation__link {
+        padding-top: 24px;
+    }
+
+    .navigation__link:last-of-type {
+        line-height: 16px;
+        font-size: 14px;
+        margin-bottom: 48px;
+        margin-top: 441px;
+        padding: 0;
+    }
+}

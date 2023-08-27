@@ -1,0 +1,26 @@
+.more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button__more {
+    width: 320px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background: #2F2F2F;
+    margin: 52px auto 80px auto;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0;
+    cursor: pointer;
+}
+
+.button__more:hover {
+    opacity: .7;
+}
