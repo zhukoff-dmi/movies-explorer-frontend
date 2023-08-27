@@ -13,13 +13,13 @@ function Register() {
                     type="text"
                     minLength="2"
                     maxLength="30" />
-                <span className="register__error"></span>
+                <span className="register__error">Ошибка</span>
                 <p className="register__input-name">E-mail</p>
                 <input
                     className="register__input"
                     type="email"
                     defaultValue={"pochta@yandex.ru"} />
-                <span className="register__error"></span>
+                <span className="register__error">Ошибка</span>
                 <p className="register__input-name">Пароль</p>
                 <input
                     className="register__input"
@@ -27,7 +27,7 @@ function Register() {
                     required
                     defaultValue="••••••••••••••"
                     minLength={8} />
-                <span className="register__error">ыаываываыва</span>
+                <span className="register__error">Ошибка</span>
                 <button className="register__submit-button" type="submit">Зарегистрироваться</button>
             </form>
             <div className="register__bottom">

@@ -58,7 +58,7 @@
 
 .about-me__photo {
     width: 270px;
-    height: 327px;
+    min-height: 327px;
     border-radius: 10px;
 }
 
@@ -86,7 +86,7 @@
 
 @media screen and (max-width: 768px) {
     .about-me {
-        padding: 80px 50px;
+        padding: 76px 50px 80px;
     }
 
     .about-me__column {
@@ -108,7 +108,7 @@
 
     .about-me__photo {
         width: 255px;
-        height: 307px;
+        min-height: 307px;
     }
 
     .about-me__text {
@@ -127,13 +127,13 @@
 
     .about-me__photo {
         width: 292px;
-        height: 352px;
+        min-height: 352px;
     }
 }
 
 @media screen and (max-width: 370px) {
     .about-me {
-        padding: 70px 14px 60px 14px;
+        padding: 68px 14px 60px 14px;
     }
 
     .about-me__title {

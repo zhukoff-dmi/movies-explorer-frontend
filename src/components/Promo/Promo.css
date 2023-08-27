@@ -55,7 +55,7 @@
     color: black;
     font-size: 12px;
     font-weight: 500;
-    height: 36px;
+    min-height: 36px;
     width: 96px;
     line-height: 16px;
     padding: 0;
@@ -109,7 +109,7 @@
 
     .promo__more-list {
         width: 82px;
-        height: 26px;
+        min-height: 26px;
     }
 
     .promo__navigation {

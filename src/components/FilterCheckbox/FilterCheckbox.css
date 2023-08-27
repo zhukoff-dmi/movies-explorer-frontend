@@ -47,7 +47,17 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 820px) {
+    .checkbox {
+        margin-bottom: 52px;
+    }
+}
+
 @media screen and (max-width: 600px) {
+    .checkbox {
+        margin-bottom: 65px;
+    }
+
     .checkbox__description {
         font-size: 11px;
         line-height: 18px;

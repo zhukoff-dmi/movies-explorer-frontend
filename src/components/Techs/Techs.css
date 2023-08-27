@@ -35,7 +35,7 @@
 
 .techs__item {
     width: 90px;
-    height: 60px;
+    min-height: 60px;
     padding-top: 21px;
     font-weight: 400;
     font-size: 14px;
@@ -90,7 +90,7 @@
 
     .techs__item {
         width: 84px;
-        height: 57px;
+        min-height: 57px;
         font-size: 12px;
         letter-spacing: -0.48px;
     }
@@ -118,7 +118,7 @@
 
 @media screen and (max-width: 370px) {
     .techs {
-        padding: 72px 18px;
+        padding: 71px 18px;
     }
 
     .techs__title {
@@ -128,6 +128,7 @@
     }
 
     .techs__technologies {
+        gap: 10px;
         grid-template-columns: repeat(2, 84px);
     }
 

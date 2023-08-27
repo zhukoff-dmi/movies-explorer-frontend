@@ -13,13 +13,13 @@ function Login() {
                     className="login__input"
                     defaultValue={"pochta@yandex.ru"}
                     type="email" />
-                <span className="login__error"></span>
+                <span className="login__error">Ошибка</span>
                 <p className="login__input-name">Пароль</p>
                 <input
                     className="login__input"
                     defaultValue="••••••••••••••"
                     type="password" />
-                <span className="login__error"></span>
+                <span className="login__error">Ошибка</span>
                 <button className="login__submit-button" type="submit">Войти</button>
             </form>
             <div className="login__bottom">

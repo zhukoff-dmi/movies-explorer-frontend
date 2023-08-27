@@ -88,7 +88,7 @@
     }
 
     .project__columns {
-        column-gap: 35px;
+        column-gap: 37px;
     }
 
     .project__title {
@@ -120,12 +120,12 @@
 
     .project__columns {
         flex-direction: column;
-        margin-top: 64px;
+        margin-top: 62px;
     }
 
     .project__column {
         margin-top: 0;
-        margin-bottom: 56px;
+        margin-bottom: 58px;
     }
 
     .project__name {

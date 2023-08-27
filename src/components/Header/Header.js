@@ -51,7 +51,8 @@ function Header(props) {
                         <div className="header__profile-link-logo"></div>
                         <p className="header__profile-link-text">Аккаунт</p>
                     </NavLink>
-                </div><div className="header__menu-item">
+                </div>
+                <div className="header__menu-item">
                     <button className="header__menu" onClick={openMenu}></button>
                 </div>
             </nav>

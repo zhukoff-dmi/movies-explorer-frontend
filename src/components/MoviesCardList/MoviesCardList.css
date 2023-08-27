@@ -12,8 +12,12 @@
     justify-content: center;
 }
 
+.movies__card-list:last-of-type {
+    row-gap: 0;
+}
+
 .more {
-    padding: 32px 0;
+    padding: 64px 0 99px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,9 +43,13 @@
     opacity: .7;
 }
 
+.more__saved-movies {
+    padding-top: 90px;
+}
+
 @media screen and (max-width: 1000px) {
     .movies {
-        padding: 68px 30px 0px 30px;
+        padding: 77px 30px 0px 30px;
     }
 
     .movies__card-list {
@@ -52,13 +60,17 @@
     }
 
     .more {
-        padding: 36px 0 80px;
+        padding: 70px 0 80px;
+    }
+
+    .more__saved-movies {
+        padding-top: 11px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .movies {
-        padding: 40px 10px;
+        padding: 48px 10px;
         padding-bottom: 30px;
     }
 
@@ -74,7 +86,7 @@
     }
 
     .more {
-        padding: 66px 30px;
+        padding: 78px 30px;
         padding-bottom: 64px;
     }
 }
