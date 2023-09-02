@@ -95,7 +95,7 @@
     opacity: .7;
 }
 
-.profile__error-message {
+.profile__error {
     display: block;
     color: #FF004C;
     text-align: center;
@@ -104,6 +104,11 @@
     line-height: normal;
     padding: 0 0 20px 0;
     margin-top: 186px;
+    visibility: hidden;
+}
+
+.profile__error_active {
+    visibility: visible;
 }
 
 .profile__submit-button {

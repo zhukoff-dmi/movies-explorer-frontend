@@ -1,52 +1,54 @@
 import './MoviesCard.css';
-import film from '../../images/picture-film.png';
-import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 
-function MoviesCard({buttonTitile}) {
-    const location = useLocation();
-    const [isLiked, setIsLiked] = useState(false);
-    const [buttonText, setButtonText] = useState('Сохранить');
+function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopupOpen, setErrorText }) {
+    const [isAdded, setAdded] = useState(movie.isAdded);
 
-    const cardLikeButtonClassName = `movie-card__like ${isLiked && "movie-card__like_active"
-        }`;
-
-    function handleSveMovie() {
-        setIsLiked(!isLiked);
-        setButtonText(" ");
+    async function buttonClick() {
+        try {
+            if (!isAdded) {
+                await onSaveClick(movie);
+                setAdded(true);
+            } else {
+                await onDeleteClick(movie);
+                setAdded(false)
+            }
+        } catch (err) {
+        }
     }
 
-    function handleDeleteMovie() {
-        setIsLiked(!isLiked);
+    function formatDuration(duration) {
+        const hours = Math.floor(duration / 60);
+        const minutes = duration % 60;
+        if (hours > 0) {
+            return `${hours} ч ${minutes} мин`;
+        }
+        return `${minutes} мин`;
     }
+
+    const formatDurationTime = formatDuration(movie.duration);
 
     return (
         <div className="movie-card">
             <div className="movie-card__information">
-                <h2 className="movie-card__title">В погоне за Бенкси</h2>
-                <p className="movie-card__duration">27 минут</p>
+                <h2 className="movie-card__title">{movie.nameRu}</h2>
+                <p className="movie-card__duration">{formatDurationTime}</p>
             </div>
-            <img className="movie-card__picture" src={film} alt="Постер к фильму" />
-            {location.pathname === "/movies" ? (
-                <div className="movie-card__footer">
-                    <button
-                        className={cardLikeButtonClassName}
-                        onClick={handleSveMovie}
-                        type="button">{isLiked ? buttonText : "Сохранить"}</button>
-                </div>
-            ) : (
-                <div className="movie-card__footer">
-                    <button
-                        className="movie-card__like_inactive"
-                        onClick={handleDeleteMovie}
-                        type="button">
-                    </button>
-                </div>
-            )}
+            <a target="_blank" href={movie.trailerLink} rel="noreferrer">
+                <img className="movie-card__picture" src={`https://api.nomoreparties.co${movie.image.url}`}
+                    alt={movie.nameRu} />
+            </a>
+            <div className="movie-card__footer">
+                <button
+                    className={`${isAdded ? "movie-card__like_active" : "movie-card__like"}`}
+                    onClick={buttonClick}
+                    type="button">
+                    {isAdded ? '' : 'Сохранить'}
+                </button>
+            </div>
         </div>
     );
 }
 
 export default MoviesCard;
-

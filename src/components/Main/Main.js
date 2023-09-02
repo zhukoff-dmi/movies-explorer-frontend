@@ -3,19 +3,23 @@ import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const Main = () => {
-    return (
-      <>
-        <main>
-          <Promo />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
-          <Portfolio />
-        </main>
-      </>
-    );
-  };
-  
-  export default Main;
+  return (
+    <>
+      <Header />
+      <main>
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Main;

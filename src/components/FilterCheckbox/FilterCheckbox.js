@@ -1,9 +1,13 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onToggleClick }) {
     return (
         <label className="checkbox">
-            <input className="checkbox__input" type="checkbox" id="checkbox" />
+            <input
+                onClick={onToggleClick}
+                className="checkbox__input"
+                type="checkbox"
+                id="checkbox" />
             <span className="checkbox__description">Короткометражки</span>
         </label>
     );

@@ -38,6 +38,8 @@
     margin: 0;
     margin-top: 186px;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
 .not-found__link {
