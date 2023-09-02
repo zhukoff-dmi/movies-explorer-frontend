@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.zhukoffdmi.nomoreparties.co";
 
 const getJson = (res) => {
     if (res.ok) {
