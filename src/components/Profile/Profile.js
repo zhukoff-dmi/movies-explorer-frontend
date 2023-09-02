@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import React from "react";
 import "./Profile.css";
 import { useState, useEffect } from "react";
 import Header from '../Header/Header'
