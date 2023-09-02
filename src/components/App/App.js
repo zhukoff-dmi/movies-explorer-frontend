@@ -1,7 +1,7 @@
 import './App.css';
 //react
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 //context
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 //components
