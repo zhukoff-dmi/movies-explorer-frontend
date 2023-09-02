@@ -62,7 +62,7 @@ function App() {
         }
       } catch (err) {
         setErrorPopup(true);
-        setErrorText(`Ошибка ${err}`);
+        setErrorText(`${err}`);
         console.log(err);
       }
     }
@@ -79,7 +79,7 @@ function App() {
       navigate('/movies', { replace: true });
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`);
+      setErrorText(`${err}`);
       console.log(err);
     };
   };
@@ -91,7 +91,7 @@ function App() {
       await handleLoginSubmit(userData);
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`);
+      setErrorText(`${err}`);
       console.log(err);
     };
   };
@@ -119,7 +119,7 @@ function App() {
       setSuccessText('Вы успешно обновили данные');
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`)
+      setErrorText(`${err}`)
       console.log(err);
     };
   };
@@ -158,7 +158,7 @@ function App() {
       }
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`);
+      setErrorText(`${err}`);
       console.log(err);
     }
   }
@@ -252,14 +252,14 @@ function App() {
               })
               .catch((err) => {
                 setErrorPopup(true);
-                setErrorText(`Ошибка ${err}`)
+                setErrorText(`${err}`)
                 console.log(err);
               })
           }
         })
         .catch((err) => {
           setErrorPopup(true);
-          setErrorText(`Ошибка ${err}`)
+          setErrorText(`${err}`)
           console.log(err);
         })
     }
