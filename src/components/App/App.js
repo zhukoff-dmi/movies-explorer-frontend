@@ -304,7 +304,7 @@ function App() {
               element={Movies}
               loggedIn={isLoggedIn}
               isLoading={isLoadingMovies}
-              movie={movies}
+              movies={movies}
               initialMovies={initialMovies}
               onSaveClick={handleSaveMovie}
               onDeleteClick={handleDeleteMovie}
