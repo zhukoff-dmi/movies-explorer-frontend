@@ -13,15 +13,15 @@ function SavedMovies({
     setErrorText,
     setErrorPopupOpen,
     onToggleClick,
-    setLoadingSaveMovies,
+    setLoadingSavedMovies,
     setSavedMovies
 }) {
 
     useEffect(() => {
-        setLoadingSaveMovies(true);
+        setLoadingSavedMovies(true);
         const userMovies = JSON.parse(localStorage.getItem('savedMovies'))
         setSavedMovies(userMovies);
-        setLoadingSaveMovies(false);
+        setLoadingSavedMovies(false);
     }, []);
 
     return (
