@@ -48,19 +48,19 @@ class MainApi {
         return this._request('/movies', {
             method: 'POST',
             headers: this._headers,
-            body: JSON.stringify(movie
-                // country: movie.country,
-                // director: movie.director,
-                // duration: movie.duration,
-                // year: movie.year,
-                // description: movie.description,
-                // image: (`https://api.nomoreparties.co${movie.image.url}`),
-                // trailer: movie.trailer,
-                // thumbnail: (`https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`),
-                // movieId: movie.id,
-                // nameRU: movie.nameRU,
-                // nameEN: movie.nameEN,
-            )
+            body: JSON.stringify({
+                country: movie.country,
+                director: movie.director,
+                duration: movie.duration,
+                year: movie.year,
+                description: movie.description,
+                image: (`https://api.nomoreparties.co${movie.image.url}`),
+                trailer: movie.trailer,
+                thumbnail: (`https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`),
+                movieId: movie.id,
+                nameRU: movie.nameRU,
+                nameEN: movie.nameEN,
+            })
         })
     }
 

@@ -40,7 +40,7 @@ function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopup, setError
                 <h2 className="movie-card__title">{movie.nameRU}</h2>
                 <p className="movie-card__duration">{formatDurationTime}</p>
             </div>
-            <Link target="_blank" href={movie.trailer} rel="noreferrer">
+            <Link target="_blank" to={movie.trailer} rel="noreferrer">
                 <img className="movie-card__picture" src={`https://api.nomoreparties.co${movie.image.url}`}
                     alt={movie.nameRu} />
             </Link>
