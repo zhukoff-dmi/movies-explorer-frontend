@@ -46,9 +46,9 @@ function Register(props) {
         e.preventDefault();
         if (isNameValid(name) && isEmailValid(email) && isPasswordValid(password)) {
             props.onSubmit({
-                name: name,
-                email: email,
-                password: password
+                name,
+                email,
+                password,
             })
         } else {
             setNameError(isNameValid(name) ? '' : 'Минимальная длина 2 символа');
