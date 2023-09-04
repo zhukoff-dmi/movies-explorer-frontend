@@ -19,7 +19,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
             setVisibleCards((prevVisibleCards) => prevVisibleCards + 2)
         }
     }
-
+    
     useEffect(() => {
         setVisibleCards(12);
     }, [isLoading]);
@@ -47,7 +47,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
             {isLoading ? (
                 <Preloader />
             ) : (
-                movies.length > 0 ?
+                movies.length > 0 ? 
                     <div className="movies__card-list">
                         {movies.slice(0, visibleCards).map((movie) => (
                             <MoviesCard

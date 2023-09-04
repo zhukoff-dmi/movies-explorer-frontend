@@ -55,7 +55,7 @@ class MainApi {
                 year: movie.year,
                 description: movie.description,
                 image: (`https://api.nomoreparties.co${movie.image.url}`),
-                trailerLink: movie.trailerLink,
+                trailer: movie.trailer,
                 thumbnail: (`https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`),
                 movieId: movie.id,
                 nameRU: movie.nameRU,
