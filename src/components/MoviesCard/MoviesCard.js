@@ -3,7 +3,7 @@ import './MoviesCard.css';
 import { useState } from 'react';
 
 
-function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopupOpen, setErrorText }) {
+function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopup, setErrorText }) {
     const [isAdded, setAdded] = useState(movie.isAdded);
 
     async function buttonClick() {
@@ -16,6 +16,9 @@ function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopupOpen, setE
                 setAdded(false)
             }
         } catch (err) {
+            setErrorPopup(true);
+            setErrorText(`${err.message}`)
+            console.log(err)
         }
     }
 
@@ -33,10 +36,10 @@ function MoviesCard({ movie, onSaveClick, onDeleteClick, setErrorPopupOpen, setE
     return (
         <div className="movie-card">
             <div className="movie-card__information">
-                <h2 className="movie-card__title">{movie.nameRu}</h2>
+                <h2 className="movie-card__title">{movie.nameRU}</h2>
                 <p className="movie-card__duration">{formatDurationTime}</p>
             </div>
-            <a target="_blank" href={movie.trailerLink} rel="noreferrer">
+            <a target="_blank" href={movie.trailer} rel="noreferrer">
                 <img className="movie-card__picture" src={`https://api.nomoreparties.co${movie.image.url}`}
                     alt={movie.nameRu} />
             </a>

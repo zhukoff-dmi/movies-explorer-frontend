@@ -1,6 +1,7 @@
 .movies {
     padding: 79px 68px;
     padding-bottom: 0px;
+    margin: 0 auto;
 }
 
 .movies__card-list {

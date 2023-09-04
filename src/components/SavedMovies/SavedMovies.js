@@ -11,7 +11,7 @@ function SavedMovies({
     onSubmit,
     isLoading,
     setErrorText,
-    setErrorPopupOpen,
+    setErrorPopup,
     onToggleClick,
     setLoadingSavedMovies,
     setSavedMovies
@@ -35,7 +35,7 @@ function SavedMovies({
             <MoviesCardList
                 isLoading={isLoading}
                 movies={savedMovies}
-                setErrorPopupOpen={setErrorPopupOpen}
+                setErrorPopup={setErrorPopup}
                 setErrorText={setErrorText}
                 onDeleteClick={onDeleteClick}
             />

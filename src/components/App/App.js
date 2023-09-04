@@ -119,7 +119,7 @@ function App() {
       setSuccessText('Вы успешно обновили данные');
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`)
+      setErrorText(`Ошибка ${err.message}`)
       console.log(err);
     };
   };
@@ -133,7 +133,7 @@ function App() {
       setSavedMovies([addMovie, ...savedMovies]);
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`${err}`);
+      setErrorText(`${err.message}`);
       console.log(err);
     }
   }

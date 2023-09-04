@@ -74,6 +74,11 @@
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+    width: 100px;
+    min-height: 29px;
+    border: 0;
+    padding: 0;
+    margin: 16px 0;
 }
 
 .movie-card__like_inactive {
