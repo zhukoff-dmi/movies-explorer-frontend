@@ -75,7 +75,7 @@ class MainApi {
 const mainApi = new MainApi({
     baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
     headers: {
-        authorization: '7e54c718-5681-4ba1-ab1c-120b9ede7317',
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
     }
 });

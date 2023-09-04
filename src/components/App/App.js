@@ -62,7 +62,7 @@ function App() {
         }
       } catch (err) {
         setErrorPopup(true);
-        setErrorText(`${err}`);
+        setErrorText(`Ошибка ${err}`);
         console.log(err);
       }
     }
@@ -119,7 +119,7 @@ function App() {
       setSuccessText('Вы успешно обновили данные');
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`${err}`)
+      setErrorText(`Ошибка ${err}`)
       console.log(err);
     };
   };
