@@ -85,10 +85,10 @@ function App() {
   };
 
   //регистрация
-  async function handleRegisterSubmit(userData) {
+  async function handleRegisterSubmit(name, email, password) {
     try {
-      await Auth.signUp(userData);
-      await handleLoginSubmit(userData);
+      await Auth.signUp(name, email, password);
+      await handleLoginSubmit(email, password);
     } catch (err) {
       setErrorPopup(true);
       setErrorText(`${err}`);

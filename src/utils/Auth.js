@@ -28,24 +28,18 @@ export const signIn = (userData) => {
         })
 }
 
-export const signUp = (userData) => {
+export const signUp = (name, email, password) => {
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ 
-            name: userData.name,
-            email: userData.email,
-            password: userData.password
+        body: JSON.stringify({ 'name': name, 'email': email, 'password': password
         })
     })
         .then(res => getJson(res))
 }
-// name, email, password
-// 'name': name, 'email': email, 'password': password,
-
 
 export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
