@@ -28,14 +28,17 @@ export const signIn = (userData) => {
         })
 }
 
-export const signUp = (name, email, password) => {
+export const signUp = (userData) => {
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ 'name': name, 'email': email, 'password': password
+        body: JSON.stringify({ 
+            name: userData.name,
+            email: userData.email,
+            password: userData.password
         })
     })
         .then(res => getJson(res))

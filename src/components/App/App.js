@@ -85,10 +85,10 @@ function App() {
   };
 
   //регистрация
-  async function handleRegisterSubmit(name, email, password) {
+  async function handleRegisterSubmit(userData) {
     try {
-      await Auth.signUp(name, email, password);
-      await handleLoginSubmit(email, password);
+      await Auth.signUp(userData);
+      await handleLoginSubmit(userData);
     } catch (err) {
       setErrorPopup(true);
       setErrorText(`${err}`);
@@ -242,7 +242,7 @@ function App() {
             setLoadingMovies(false)
           } else {
             moviesApi
-              .getMyMovies()
+              .getInitialMovies()
               .then((movies) => {
                 const assortMovies = sortMovies(movies, userMovies);
                 localStorage.setItem('searchedMovies', JSON.stringify(assortMovies));
