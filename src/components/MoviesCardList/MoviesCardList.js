@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Preloader from '../../components/Preloader/Preloader'
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErrorPopupOpen, setErrorText }) {
+function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErrorPopup, setErrorText }) {
     const location = useLocation();
     const [visibleCards, setVisibleCards] = useState(12);
 
@@ -55,7 +55,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
                                 movie={movie}
                                 onSaveClick={onSaveClick}
                                 onDeleteClick={onDeleteClick}
-                                setErrorPopupOpen={setErrorPopupOpen}
+                                setErrorPopup={setErrorPopup}
                                 setErrorText={setErrorText}
                             />
                         ))}

@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 
 
 function SavedMovies({
-    movies,
+    SavedMovies,
     onDeleteClick,
     onSubmit,
     isLoading,
@@ -34,7 +34,7 @@ function SavedMovies({
             />
             <MoviesCardList
                 isLoading={isLoading}
-                movies={movies}
+                movies={SavedMovies}
                 setErrorPopupOpen={setErrorPopupOpen}
                 setErrorText={setErrorText}
                 onDeleteClick={onDeleteClick}
