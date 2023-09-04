@@ -86,8 +86,8 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
             <div className="profile">
                 <h1 className="profile__title">Привет, {currentUser.name}!</h1>
                 <form className="profile__form">
-                    <fieldset className="profile__input-container">
-                        <legend className="profile__input-label">Имя</legend>
+                    <div className="profile__input-container">
+                        <p className="profile__input-label">Имя</p>
                         <input
                             className="profile__input"
                             type="text"
@@ -101,9 +101,9 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                             noValidate
                         />
                         <span className={`profile__error ${isNameValid(name) ? '' : 'profile__error_active'}`}>{nameError}</span>
-                    </fieldset>
-                    <fieldset className="profile__input-container">
-                        <legend className="profile__input-label">E-mail</legend>
+                    </div>
+                    <div className="profile__input-container">
+                        <p className="profile__input-label">E-mail</p>
                         <input
                             className="profile__input"
                             type="email"
@@ -116,7 +116,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                             noValidate
                         />
                         <span className={`profile__error ${isEmailValid(email) ? '' : 'profile__error_active'}`}>{emailError}</span>
-                    </fieldset>
+                    </div>
                     {isEditUser ?
                         <div>
                             <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>

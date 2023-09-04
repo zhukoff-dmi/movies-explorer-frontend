@@ -7,35 +7,32 @@ const getJson = (res) => {
     return Promise.reject(`Ошибка ${res.status}`);
 }
 
-export const signIn = (email, password) => {
+export const signIn = (userData) => {
     return fetch(`${BASE_URL}/signin`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
-    })
-        .then(res => getJson(res))
-        .then((data) => {
-            if (data.token) {
-                return data;
-            } else {
-                return;
-            }
+        body: JSON.stringify({
+            email: userData.email,
+            password: userData.password
         })
+    }).then(res => getJson(res))
 }
 
-export const signUp = (name, email, password) => {
+export const signUp = (userData) => {
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({'name': name, 'email': email, 'password': password 
+        body: JSON.stringify({ 
+            name: userData.name,
+            email: userData.email,
+            password: userData.password
         })
-    })
-        .then(res => getJson(res))
+    }).then(res => getJson(res))
 }
 
 export const checkToken = (token) => {

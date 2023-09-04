@@ -67,62 +67,35 @@ function App() {
       }
     }
   };
+  
+  //регистрация
+  async function handleRegisterSubmit(userData) {
+    try {
+      await Auth.signUp(userData);
+      await handleLoginSubmit(userData);
+    } catch (err) {
+      setErrorPopup(true);
+      setErrorText(`${err}`);
+      console.log(err);
+    };
+  };
 
   //авторизация
-  // async function handleLoginSubmit(userData) {
-  //   try {
-  //     const res = await Auth.signIn(userData);
-  //     localStorage.setItem("jwt", res.token);
-  //     const user = await mainApi.getUserInfo();
-  //     setCurrentUser(user);
-  //     setLoggedIn(true);
-  //     navigate('/movies', { replace: true });
-  //   } catch (err) {
-  //     setErrorPopup(true);
-  //     setErrorText(`${err}`);
-  //     console.log(err);
-  //   };
-  // };
+  async function handleLoginSubmit(userData) {
+    try {
+      const res = await Auth.signIn(userData);
+      localStorage.setItem("jwt", res.token);
+      const user = await mainApi.getUserInfo();
+      setCurrentUser(user);
+      setLoggedIn(true);
+      navigate('/movies', { replace: true });
+    } catch (err) {
+      setErrorPopup(true);
+      setErrorText(`${err}`);
+      console.log(err);
+    };
+  };
 
-  function handleLoginSubmit(email, password) {
-    Auth.signIn(email, password)
-      .then((res) => {
-        if (res.data.email) {
-          setSuccesPopup(true)
-          setLoggedIn(true)
-          navigate('/movies', { replace: true })
-        }
-      })
-      .catch(err => {
-        setErrorPopup(true);
-        setErrorText(`${err}`);
-        console.log(err);
-      })
-  }
-
-  //регистрация
-  // async function handleRegisterSubmit(userData) {
-  //   try {
-  //     await Auth.signUp(userData);
-  //     await handleLoginSubmit(userData);
-  //   } catch (err) {
-  //     setErrorPopup(true);
-  //     setErrorText(`${err}`);
-  //     console.log(err);
-  //   };
-  // };
-
-  function handleRegisterSubmit(name, email, password) {
-    Auth.signUp(name, email, password)
-      .then(() => {
-        handleLoginSubmit({ email, password })
-      })
-      .catch(err => {
-        setErrorPopup(true);
-        setErrorText(`${err}`);
-        console.log(err);
-      })
-  }
   //выйти из аккаунта
   function handleSignOutSubmit() {
     localStorage.removeItem('searchedMovies');
