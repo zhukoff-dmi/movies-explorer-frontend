@@ -36,7 +36,6 @@ function App() {
 
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [initialMovies, setInitialMovies] = useState([]);
 
   const [successText, setSuccessText] = useState('Успешно!');
   const [errorText, setErrorText] = useState('Ошибка!');
@@ -67,7 +66,7 @@ function App() {
       }
     }
   };
-  
+
   //регистрация
   async function handleRegisterSubmit(userData) {
     try {
@@ -133,7 +132,7 @@ function App() {
       setSavedMovies([addMovie, ...savedMovies]);
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`${err.message}`);
+      setErrorText(`${err}`);
       console.log(err);
     }
   }
@@ -213,12 +212,33 @@ function App() {
   }, []);
 
   //поиск фильмов
-  function handleSearchMovies() {
-    return moviesApi.getInitialMovies()
-      .then((initialMovies) => {
-        setInitialMovies(initialMovies);
-        return initialMovies;
-      });
+  async function handleSearchMovies(keyword) {
+    try {
+      const key = new RegExp(keyword, "gi");
+      if (location.pathname === '/movies') {
+        setLoadingMovies(true);
+        const movies = await moviesApi.getInitialMovies();
+        const findMovies = movies.filter(
+          (item) => key.test(item.nameRU) || key.test(item.nameEN)
+        );
+        const chekMovies = sortMovies(findMovies, savedMovies);
+        localStorage.setItem('searchedMovies', JSON.stringify(chekMovies));
+        setMovies(filterShorts(chekMovies) || []);
+        setLoadingMovies(false);
+      } else if (location.pathname === '/saved-movies') {
+        setLoadingSavedMovies(true);
+        const saveUserMovies = JSON.parse(localStorage.getItem('savedMovies'));
+        const findMovies = saveUserMovies.filter(
+          (item) => key.test(item.nameRU) || key.test(item.nameEN)
+        );
+        setSavedMovies(filterShorts(findMovies, savedShortsActive) || []);
+        setLoadingSavedMovies(false);
+      }
+    } catch (err) {
+      setErrorPopup(true);
+      setErrorText(`${err}`);
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -305,7 +325,6 @@ function App() {
               loggedIn={isLoggedIn}
               isLoading={isLoadingMovies}
               movies={movies}
-              initialMovies={initialMovies}
               onSaveClick={handleSaveMovie}
               onDeleteClick={handleDeleteMovie}
               onToggleClick={handleToggleClick}
