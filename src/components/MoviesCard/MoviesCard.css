@@ -22,6 +22,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 18px;
+    text-overflow: ellipsis;
 }
 
 .movie-card__duration {
@@ -79,6 +80,7 @@
     border: 0;
     padding: 0;
     margin: 16px 0;
+    background-color: transparent;
 }
 
 .movie-card__like_inactive {

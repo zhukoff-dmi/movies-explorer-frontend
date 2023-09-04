@@ -49,7 +49,6 @@ function SearchForm({ onSubmit, onToggleClick, /*shortsActive*/ }) {
                 </div>
             </form>
             <FilterCheckbox
-                // shortsActive={shortsActive}
                 onToggleClick={onToggleClick}
             />
         </section>
