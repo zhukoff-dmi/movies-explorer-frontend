@@ -48,20 +48,23 @@ function App() {
     setErrorPopup(false);
   }
   //проверка токена
-  mainApi.checkToken()
-    .then((data) => {
-      if (data) {
-        setLoggedIn(true)
-        navigate('/movies')
-      } else {
-        setLoggedIn(false)
+  async function tokenCheck() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      try {
+        const res = await Auth.checkToken(jwt);
+        if (res) {
+          setLoggedIn(true);
+          const userData = await mainApi.getUserInfo();
+          setCurrentUser(userData);
+        }
+      } catch (err) {
+        setErrorPopup(true);
+        setErrorText(`Ошибка ${err}`);
+        console.log(err);
       }
-    })
-    .catch(err => {
-      setLoggedIn(false)
-      console.log(err.message)
-    })
-
+    }
+  };
   //регистрация
   async function handleRegisterSubmit(userData) {
     try {
@@ -200,6 +203,11 @@ function App() {
     const assortMovies = sortMovies(movies, savedMovies);
     setMovies(assortMovies);
   }, [movies, savedMovies]);
+
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   //поиск фильмов
   async function handleSearchMovies(keyword) {
