@@ -49,10 +49,10 @@ function App() {
   }
   //проверка токена
   async function tokenCheck() {
-    const token = localStorage.getItem("token");
-    if (token) {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
       try {
-        const res = await Auth.checkToken(token);
+        const res = await Auth.checkToken(jwt);
         if (res) {
           setLoggedIn(true);
           const userData = await mainApi.getUserInfo();
@@ -81,7 +81,7 @@ function App() {
   async function handleLoginSubmit(userData) {
     try {
       const res = await Auth.signIn(userData);
-      localStorage.setItem("token", res.token);
+      localStorage.setItem("jwt", res.token);
       const user = await mainApi.getUserInfo();
       setCurrentUser(user);
       setLoggedIn(true);
