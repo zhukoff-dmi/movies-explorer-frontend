@@ -22,7 +22,7 @@ function SavedMovies({
         const userMovies = JSON.parse(localStorage.getItem('savedMovies'))
         setSavedMovies(userMovies);
         setLoadingSavedMovies(false);
-    }, []);
+    }, [setLoadingSavedMovies, setSavedMovies]);
 
     return (
         <main>

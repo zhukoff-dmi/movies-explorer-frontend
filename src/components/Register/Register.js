@@ -93,7 +93,7 @@ function Register(props) {
         if (props.isLoggedIn) {
             navigate("/movies", { replace: true })
         }
-    }, [props.isLoggedIn]);
+    }, [navigate, props.isLoggedIn]);
 
     return (
         <main className="register" id="signup">
