@@ -34,7 +34,7 @@
     padding: 16px 0 0 0;
 }
 
-.profile__input-label {
+.profile__input-name {
     width: 141px;
     color: #FFF;
     font-size: 11px;
@@ -89,6 +89,8 @@
     line-height: normal;
     cursor: pointer;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
 }
 
 .profile__btn-text {
@@ -111,6 +113,10 @@
 
 .profile__error_active {
     visibility: visible;
+}
+
+.profile__error-message {
+
 }
 
 .profile__submit-button {

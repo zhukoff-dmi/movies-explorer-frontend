@@ -143,7 +143,7 @@ function App() {
       if (location.pathname === '/movies') {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
 
-        await mainApi.deleteMovie(selectMovie._id);
+        await mainApi.deleteMovie(selectMovie.id);
         const updateMovies = savedMovies.slice().filter(m => m !== selectMovie);
 
         localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
@@ -204,7 +204,7 @@ function App() {
   useEffect(() => {
     const assortMovies = sortMovies(movies, savedMovies);
     setMovies(assortMovies);
-  }, [savedMovies]);
+  }, [movies, savedMovies]);
 
 
   useEffect(() => {
@@ -283,7 +283,7 @@ function App() {
           console.log(err);
         })
     }
-  }, [currentUser]);
+  }, [currentUser, isLoggedIn, shortsActive]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -87,7 +87,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                 <h1 className="profile__title">Привет, {currentUser.name}!</h1>
                 <form className="profile__form">
                     <div className="profile__input-container">
-                        <p className="profile__input-label">Имя</p>
+                        <p className="profile__input-name">Имя</p>
                         <input
                             className="profile__input"
                             type="text"
@@ -103,7 +103,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                         <span className={`profile__error ${isNameValid(name) ? '' : 'profile__error_active'}`}>{nameError}</span>
                     </div>
                     <div className="profile__input-container">
-                        <p className="profile__input-label">E-mail</p>
+                        <p className="profile__input-name">E-mail</p>
                         <input
                             className="profile__input"
                             type="email"
