@@ -1,6 +1,7 @@
 class MainApi {
-    constructor(baseUrl) {
-        this._baseUrl = baseUrl;
+    constructor(options) {
+        this._baseUrl = options.baseUrl;
+        this._headers = options.headers;
     }
 
     //отчет сервера
@@ -8,7 +9,7 @@ class MainApi {
         if (res.ok) {
             return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`)
+        return Promise.reject(`Ошибка: ${res.status}`)
     }
 
     _request(url, options) {
@@ -18,47 +19,35 @@ class MainApi {
     //Запросы пользователя
 
     getUserInfo() {
-        return fetch(this._baseUrl + '/users/me', {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json'
-            }
-        }).then(this._getJson)
+        return this._request('/users/me', {
+            headers: this._headers,
+        })
     }
 
     updateUserData(userData) {
-        return fetch(this._baseUrl + '/users/me', {
+        return this._request('/users/me', {
             method: 'PATCH',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: userData.name,
                 email: userData.email
             }),
-        }).then(this._getJson)
+        })
     }
 
     //Запросы связанные с фильмами
 
     getMyMovies() {
-        return fetch(this._baseUrl + '/movies', {
+        return this._request('/movies', {
             method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json'
-            }
-        }).then(this._getJson)
+            headers: this._headers,
+        })
     }
 
     addNewMovie(movie) {
-        return fetch(this._baseUrl + '/movies', {
+        return this._request('/movies', {
             method: 'POST',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 country: movie.country,
                 director: movie.director,
@@ -72,23 +61,23 @@ class MainApi {
                 nameRU: movie.nameRU,
                 nameEN: movie.nameEN,
             })
-        }).then(this._getJson)
+        })
     }
 
     deleteMovie(movieId) {
-        return fetch(this._baseUrl + `/movies/${movieId}`, {
+        return this._request(`/movie/${movieId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: movieId
-            }),
-        }).then(this._getJson)
-    };
+            headers: this._headers,
+        })
+    }
 }
 
-const mainApi = new MainApi('https://api.zhukoffdmi.nomoreparties.co');
+const mainApi = new MainApi({
+    baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json'
+    }
+});
 
 export default mainApi;

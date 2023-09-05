@@ -47,13 +47,12 @@ function App() {
     setSuccesPopup(false);
     setErrorPopup(false);
   }
-
   //проверка токена
   async function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    const token = localStorage.getItem("token");
+    if (token) {
       try {
-        const res = await Auth.checkToken(jwt);
+        const res = await Auth.checkToken(token);
         if (res) {
           setLoggedIn(true);
           const userData = await mainApi.getUserInfo();
@@ -66,7 +65,6 @@ function App() {
       }
     }
   };
-
   //регистрация
   async function handleRegisterSubmit(userData) {
     try {
@@ -83,7 +81,7 @@ function App() {
   async function handleLoginSubmit(userData) {
     try {
       const res = await Auth.signIn(userData);
-      localStorage.setItem("jwt", res.token);
+      localStorage.setItem("token", res.token);
       const user = await mainApi.getUserInfo();
       setCurrentUser(user);
       setLoggedIn(true);
@@ -100,7 +98,7 @@ function App() {
     localStorage.removeItem('searchedMovies');
     localStorage.removeItem('inputMoviesValue');
     localStorage.removeItem('shortsActive');
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     localStorage.removeItem('savedMovies');
     setCurrentUser({});
     setLoggedIn(false);
@@ -143,7 +141,7 @@ function App() {
       if (location.pathname === '/movies') {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
 
-        await mainApi.deleteMovie(selectMovie.id);
+        await mainApi.deleteMovie(selectMovie._id);
         const updateMovies = savedMovies.slice().filter(m => m !== selectMovie);
 
         localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
