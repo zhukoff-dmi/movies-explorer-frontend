@@ -75,7 +75,6 @@ class MainApi {
 const mainApi = new MainApi({
     baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
     headers: {
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
         'Content-Type': 'application/json'
     }
 });
