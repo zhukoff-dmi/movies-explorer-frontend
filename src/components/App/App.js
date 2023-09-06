@@ -65,6 +65,7 @@ function App() {
       }
     }
   };
+  
   //регистрация
   async function handleRegisterSubmit(userData) {
     try {
