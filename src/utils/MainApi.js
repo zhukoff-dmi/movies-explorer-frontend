@@ -68,6 +68,9 @@ class MainApi {
         return this._request(`/movie/${movieId}`, {
             method: 'DELETE',
             headers: this._headers,
+            body: JSON.stringify({
+                id: movieId
+            })
         })
     }
 }

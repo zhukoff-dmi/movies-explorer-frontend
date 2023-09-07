@@ -7,10 +7,13 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const Main = () => {
+const Main = (props) => {
   return (
     <>
-      <Header />
+      <Header
+      onMenuBurgerClick={props.onMenuBurgerClick} 
+      loggedIn={props.loggedIn}
+      />
       <main>
         <Promo />
         <AboutProject />

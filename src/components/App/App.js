@@ -13,6 +13,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import InfoTooltip from '../infoTooltip/InfoTooltip';
+import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 //api
 import mainApi from '../../utils/MainApi';
@@ -31,6 +32,7 @@ function App() {
   const [isLoadingMovies, setLoadingMovies] = useState(false);
   const [isLoadingSavedMovies, setLoadingSavedMovies] = useState(false);
   const [savedShortsActive, setSavedShortsActive] = useState(false);
+  const [isMenuBurgerOpen, setMenuBurgerOpen] = useState(false);
 
   const [currentUser, setCurrentUser] = useState();
 
@@ -47,6 +49,11 @@ function App() {
     setSuccesPopup(false);
     setErrorPopup(false);
   }
+
+  function openNavHeaderPopup() {
+    setMenuBurgerOpen(true);
+  };
+
   //проверка токена
   async function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
@@ -291,6 +298,7 @@ function App() {
           path="/"
           element={
             <Main
+              onMenuBurgerClick={openNavHeaderPopup}
               loggedIn={isLoggedIn}
             />
           }
@@ -377,6 +385,11 @@ function App() {
           }
         />
       </Routes>
+      
+      <Navigation
+        onClose={closeAllPopups}
+        isOpen={isMenuBurgerOpen}
+      />
 
       <InfoTooltip
         imgLink={errorImage}

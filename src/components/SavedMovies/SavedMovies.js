@@ -6,6 +6,8 @@ import Footer from '../Footer/Footer';
 
 
 function SavedMovies({
+    onMenuBurgerClick,
+    loggedIn,
     savedMovies,
     onDeleteClick,
     onSubmit,
@@ -26,7 +28,10 @@ function SavedMovies({
 
     return (
         <main>
-            <Header />
+            <Header
+                onMenuBurgerClick={onMenuBurgerClick}
+                loggedIn={loggedIn}
+            />
 
             <SearchForm
                 onToggleClick={onToggleClick}

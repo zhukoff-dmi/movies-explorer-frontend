@@ -3,7 +3,7 @@ import "./Profile.css";
 import { useState, useEffect } from "react";
 import Header from '../Header/Header'
 
-function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, setErrorPopupOpen }) {
+function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick, setErrorText, setErrorPopupOpen }) {
     const [email, setEmail] = useState(currentUser.name);
     const [name, setName] = useState(currentUser.email);
 
@@ -82,7 +82,10 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
 
     return (
         <main>
-            <Header />
+            <Header
+                onMenuBurgerClick={onMenuBurgerClick}
+                loggedIn={loggedIn}
+            />
             <div className="profile">
                 <h1 className="profile__title">Привет, {currentUser.name}!</h1>
                 <form className="profile__form">
