@@ -65,7 +65,7 @@ function App() {
       }
     }
   };
-  
+
   //регистрация
   async function handleRegisterSubmit(userData) {
     try {
@@ -203,7 +203,7 @@ function App() {
   useEffect(() => {
     const assortMovies = sortMovies(movies, savedMovies);
     setMovies(assortMovies);
-  }, [movies, savedMovies]);
+  }, [savedMovies]);
 
 
   useEffect(() => {
@@ -282,7 +282,7 @@ function App() {
           console.log(err);
         })
     }
-  }, [currentUser, isLoggedIn, shortsActive]);
+  }, [currentUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -73,7 +73,7 @@ function Login(props) {
         if (props.isLoggedIn) {
             navigate("/movies", { replace: true })
         }
-    }, [navigate, props.isLoggedIn]);
+    }, [props.isLoggedIn]);
 
     return (
         <main className="login" id="signin">
