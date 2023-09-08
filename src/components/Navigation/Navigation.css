@@ -48,7 +48,6 @@
 
 .navigation__link {
     color: #ffffff;
-    display: flex;
     align-items: center;
     font-weight: 500;
     font-size: 18px;
@@ -83,7 +82,16 @@
 }
 
 .navigation__link_active {
-    max-width: fit-content;
+    color: #ffffff;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    z-index: 3;
+    text-decoration: none;
+    transition: opacity 0.5s linear;
+    padding-top: 28px;
+    cursor: pointer;
     border-bottom: 1px solid #ffffff;
 }
 

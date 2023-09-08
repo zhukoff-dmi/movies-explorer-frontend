@@ -97,26 +97,35 @@
     opacity: .7;
 }
 
-.profile__error {
+.profile__validation-error {
     display: block;
+    height: 10px;
     color: #FF004C;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
     line-height: normal;
-    padding: 0 0 20px 0;
-    margin-top: 186px;
+    padding: 0 0 8px;
+    margin: 0;
     visibility: hidden;
-    background-color: transparent;
-    border: none;
 }
 
-.profile__error_active {
+.profile__validation-error_active {
     visibility: visible;
 }
 
 .profile__error-message {
-
+    display: block;
+    height: 10px;
+    color: #FF004C;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    visibility: hidden;
 }
 
 .profile__submit-button {

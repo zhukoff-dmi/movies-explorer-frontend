@@ -47,7 +47,8 @@ function App() {
 
   function closeAllPopups() {
     setSuccesPopup(false);
-    setErrorPopup(false);
+    setErrorPopup(false)
+    setMenuBurgerOpen(false);
   }
 
   function openNavHeaderPopup() {
@@ -385,7 +386,7 @@ function App() {
           }
         />
       </Routes>
-      
+
       <Navigation
         onClose={closeAllPopups}
         isOpen={isMenuBurgerOpen}
