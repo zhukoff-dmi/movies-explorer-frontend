@@ -5,4 +5,4 @@
 
 [Ссылка на pull request ->](https://github.com/zhukoff-dmi/movies-explorer-frontend/pull/2)
 
-[Ссылка на задеплоенный на сервере проект ->](https://github.com/zhukoff-dmi/movies-explorer-frontend/pull/2)
+[Ссылка на задеплоенный на сервере проект ->](https://zhukoffdmi.nomoreparties.co)
