@@ -98,7 +98,9 @@
     margin: 16px 0;
     cursor: pointer;
 }
-
+.movie-card__like_inactive:after {
+    content: " "
+}
 .movie-card__like_inactive:hover {
     opacity: .7;
 }

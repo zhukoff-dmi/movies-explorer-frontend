@@ -1,10 +1,14 @@
-export const BASE_URL = "https://api.zhukoffdmi.nomoreparties.co";
-// export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = "https://api.zhukoffdmi.nomoreparties.co";
+export const BASE_URL = 'http://localhost:3000';
 
 
-const getJson = (res) => {
+const getJson = async (res) => {
     if (res.ok) {
         return res.json();
+    }
+    const response = await res.json()
+    if(response) {
+        return Promise.reject(`Ошибка: ${response?.validation?.body?.message  || response?.message || res.status}`);
     }
     return Promise.reject(`Ошибка ${res.status}`);
 }

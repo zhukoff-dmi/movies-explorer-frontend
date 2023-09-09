@@ -3,9 +3,9 @@ import "./Profile.css";
 import { useState, useEffect } from "react";
 import Header from '../Header/Header'
 
-function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick, setErrorText, setErrorPopupOpen }) {
-    const [email, setEmail] = useState(currentUser.name);
-    const [name, setName] = useState(currentUser.email);
+function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, setErrorPopupOpen }) {
+    const [email, setEmail] = useState(currentUser.email);
+    const [name, setName] = useState(currentUser.name);
 
     const [emailError, setEmailError] = useState('');
     const [nameError, setNameError] = useState('');
@@ -61,7 +61,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
         } else {
             setSubmitActive(false)
         }
-    }, [name, email]);
+    }, [name, email, currentUser]);
 
     useEffect(() => {
         if (isNameValid(name)) {
@@ -83,7 +83,6 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
     return (
         <main>
             <Header
-                onMenuBurgerClick={onMenuBurgerClick}
                 loggedIn={loggedIn}
             />
             <div className="profile">
@@ -124,7 +123,6 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
                         <div>
                             <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>
                             <button
-                                type="submit"
                                 className={`${isSubmitActive ? 'profile__submit-button' : 'profile__submit-button_invalid'}`}
                                 disabled={false}
                                 onClick={handleSubmitChanges}
@@ -136,7 +134,6 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
                         <div className="porfile__btn-container">
                             <button
                                 className="profile__btn-edit"
-                                type="submit"
                                 form="profile__form"
                                 onClick={handleIsEditUser}>
                                 Редактировать</button>

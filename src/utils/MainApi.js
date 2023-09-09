@@ -19,11 +19,16 @@ export class MainApi {
     }
     
     //отчет сервера
-    _getJson(res) {
+    async _getJson(res) {
         if (res.ok) {
             return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status}`)
+        const response = await res.json()
+        if(response?.validation?.body) {
+            
+            return Promise.reject(`Ошибка ${response?.message || response?.validation?.body?.message || res.status}`);
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
     }
 
     _request(url, options) {
@@ -79,7 +84,7 @@ export class MainApi {
     }
 
     deleteMovie(movieId) {
-        return this._request(`/movie/${movieId}`, {
+        return this._request(`/movies/${movieId}`, {
             method: 'DELETE',
             headers: this._headers,
             body: JSON.stringify({

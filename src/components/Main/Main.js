@@ -11,7 +11,6 @@ const Main = (props) => {
   return (
     <>
       <Header
-      onMenuBurgerClick={props.onMenuBurgerClick} 
       loggedIn={props.loggedIn}
       />
       <main>

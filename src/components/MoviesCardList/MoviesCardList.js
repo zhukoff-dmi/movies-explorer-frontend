@@ -47,7 +47,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
             {isLoading ? (
                 <Preloader />
             ) : (
-                movies.length > 0 ? 
+                (movies && movies.length > 0) ? 
                     <div className="movies__card-list">
                         {movies.slice(0, visibleCards).map((movie) => (
                             <MoviesCard
@@ -63,7 +63,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
                     :
                     <h2 className="movies__no-movies-title">Ничего не найдено</h2>
             )}
-            {movies.length > visibleCards && !isLoading && (
+            {movies && movies.length > visibleCards && !isLoading && (
                 <div className="more">
                     {location.pathname === "/movies" &&
                         <button onClick={moreCrads} className="more__button">Еще</button>

@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import './Header.css';
 import { Link } from "react-router-dom";
 import NavHeader from "../NavHeader/NavHeader";
+import Navigation from "../Navigation/Navigation";
 
-function Header({ onMenuBurgerClick, loggedIn }) {
+function Header({ loggedIn }) {
+    const [isMenuBurgerOpen, setMenuBurgerOpen] = useState(false);
 
+    function onMenuBurgerClick() {
+        setMenuBurgerOpen(true);
+    };
     return (
         <header className="header">
             <div className="header__container-content">
@@ -12,9 +17,12 @@ function Header({ onMenuBurgerClick, loggedIn }) {
                     <div className="header__logo"></div>
                 </Link>
                 <NavHeader
-                    onMenuBurgerClick={onMenuBurgerClick}
+                onMenuBurgerClick={onMenuBurgerClick}
                     loggedIn={loggedIn}
                 />
+                <Navigation isOpen={isMenuBurgerOpen} onClose={() => {
+                    console.log('setMenuBurgerOpen', false)
+                    setMenuBurgerOpen(false) }}/>
             </div>
         </header >
     );

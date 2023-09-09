@@ -33,7 +33,6 @@ function App() {
   const [isLoadingMovies, setLoadingMovies] = useState(false);
   const [isLoadingSavedMovies, setLoadingSavedMovies] = useState(false);
   const [savedShortsActive, setSavedShortsActive] = useState(false);
-  const [isMenuBurgerOpen, setMenuBurgerOpen] = useState(false);
 
   const [currentUser, setCurrentUser] = useState();
 
@@ -49,13 +48,8 @@ function App() {
   function closeAllPopups() {
     setSuccesPopup(false);
     setErrorPopup(false)
-    setMenuBurgerOpen(false);
+    // setMenuBurgerOpen(false);
   }
-
-  function openNavHeaderPopup() {
-    setMenuBurgerOpen(true);
-  };
-
   //проверка токена
   async function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
@@ -117,13 +111,13 @@ function App() {
     localStorage.removeItem('searchedMovies');
     localStorage.removeItem('inputMoviesValue');
     localStorage.removeItem('shortsActive');
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
     localStorage.removeItem('savedMovies');
     setCurrentUser({});
     setLoggedIn(false);
-    navigate("/", { replace: true });
     setSavedMovies([]);
     setMovies([]);
+    navigate("/", { replace: true });
   };
 
   //обновляем данные профиля
@@ -165,7 +159,7 @@ function App() {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
 
         await mainApi.deleteMovie(selectMovie._id);
-        const updateMovies = savedMovies.slice().filter(m => m !== selectMovie);
+        const updateMovies = savedMovies.slice().filter(m => m._id !== selectMovie._id);
 
         localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
         setSavedMovies(updateMovies);
@@ -208,12 +202,12 @@ function App() {
 
   //фильтрация фильмов по времени "короткометражки"
   function filterShorts(movies, state) {
-    return state ? movies.filter((movie) => movie.duration <= 40) : movies;
+    return state ? movies?.filter((movie) => movie.duration <= 40) : movies;
   }
 
   //сортировка понравившехся фильмов
   function sortMovies(movies, savedMovies) {
-    const assortMovies = movies.map((movie) => {
+    const assortMovies = movies?.map((movie) => {
       movie.isAdded = savedMovies.some(
         (savedMovies) => savedMovies.movieId === movie.id
       );
@@ -271,7 +265,7 @@ function App() {
       mainApi
         .getMyMovies()
         .then((savedMovies) => {
-          const userMovies = savedMovies.filter((savedMovies) => savedMovies.owner === currentUser._id);
+          const userMovies = savedMovies;
           localStorage.setItem('savedMovies', JSON.stringify(userMovies));
           setSavedMovies(userMovies);
 
@@ -316,7 +310,6 @@ function App() {
           path="/"
           element={
             <Main
-              onMenuBurgerClick={openNavHeaderPopup}
               loggedIn={isLoggedIn}
             />
           }
@@ -403,11 +396,6 @@ function App() {
           }
         />
       </Routes>
-
-      <Navigation
-        onClose={closeAllPopups}
-        isOpen={isMenuBurgerOpen}
-      />
 
       <InfoTooltip
         imgLink={errorImage}
