@@ -13,7 +13,7 @@ function Header({ onMenuBurgerClick, loggedIn }) {
                 </Link>
                 <NavHeader
                     onMenuBurgerClick={onMenuBurgerClick}
-                    loggedIn={loggedIn}
+                    loggedIn={loggedIn === true}
                 />
             </div>
         </header >

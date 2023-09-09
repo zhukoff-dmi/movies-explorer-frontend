@@ -22,6 +22,7 @@ import * as Auth from '../../utils/Auth';
 //images
 import succesImage from '../../images/success-image.svg';
 import errorImage from '../../images/error-image.svg';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
 
@@ -69,17 +70,18 @@ function App() {
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
           console.log(userData);
+          return;
         }
-        console.log({tokenCheck:isLoggedIn, res})
       } catch (err) {
         setLoggedIn(false);
-        setCurrentUser({})
         localStorage.removeItem('jwt')
         // setErrorPopup(true);
         // setErrorText(`Ошибка ${err}`);
         console.error(err);
       }
     }
+      setLoggedIn(false);
+    
   };
 
   //регистрация
@@ -228,6 +230,7 @@ function App() {
 
 
   useEffect(() => {
+    console.log('tokenCheck')
     tokenCheck();
   }, []);
 
@@ -307,7 +310,7 @@ function App() {
     }
   }, [currentUser, isLoggedIn, shortsActive]);
 
-  return (
+  return isLoggedIn === 1 ? <Preloader/> : (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
         <Route
