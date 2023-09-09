@@ -52,7 +52,8 @@
 }
 
 .register__input:focus {
-    outline: 1px solid aliceblue;
+    outline: 1px solid #c0c0c0;
+    border-radius: 3px;
 }
 
 .register__error {

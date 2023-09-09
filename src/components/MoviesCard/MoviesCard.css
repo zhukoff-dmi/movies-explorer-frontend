@@ -105,6 +105,11 @@
     opacity: .7;
 }
 
+@media screen and (max-width: 768px) {
+    .movie-card__picture {
+        height: 190px;
+    }
+}
 
 @media screen and (max-width: 370px) {
     .movie-card__information {

@@ -13,7 +13,6 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import InfoTooltip from '../infoTooltip/InfoTooltip';
-import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 //api
 import { MainApi } from '../../utils/MainApi';
@@ -48,7 +47,6 @@ function App() {
   function closeAllPopups() {
     setSuccesPopup(false);
     setErrorPopup(false)
-    // setMenuBurgerOpen(false);
   }
   //проверка токена
   async function tokenCheck() {
@@ -62,14 +60,11 @@ function App() {
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
           setLoggedIn(true);
-          console.log(userData);
           return;
         }
       } catch (err) {
         setLoggedIn(false);
         localStorage.removeItem('jwt')
-        // setErrorPopup(true);
-        // setErrorText(`Ошибка ${err}`);
         console.error(err);
       }
     }
@@ -130,7 +125,7 @@ function App() {
       setSuccessText('Вы успешно обновили данные');
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err.message}`)
+      setErrorText(`Ошибка ${err}`)
       console.log(err);
     };
   };
@@ -223,7 +218,6 @@ function App() {
 
 
   useEffect(() => {
-    console.log('tokenCheck')
     tokenCheck();
   }, []);
 

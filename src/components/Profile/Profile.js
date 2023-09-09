@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Profile.css";
 import { useState, useEffect } from "react";
 import Header from '../Header/Header'
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, setErrorPopupOpen }) {
     const [email, setEmail] = useState(currentUser.email);
@@ -10,8 +11,9 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
     const [emailError, setEmailError] = useState('');
     const [nameError, setNameError] = useState('');
 
-    const [isSubmitActive, setSubmitActive] = useState();
+    const [isSubmitActive, setSubmitActive] = useState(false);
     const [isEditUser, setIsEditUser] = useState(false);
+
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -39,7 +41,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                     name: name,
                     email: email
                 })
-                setSubmitActive(false)
+                setSubmitActive(true)
             }
         } else {
             setErrorText('Веденные данные не должны совпадать с текущими')
@@ -123,9 +125,10 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, setErrorText, set
                         <div>
                             <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>
                             <button
+                                type="submit"
+                                onClick={handleSubmitChanges}
                                 className={`${isSubmitActive ? 'profile__submit-button' : 'profile__submit-button_invalid'}`}
                                 disabled={false}
-                                onClick={handleSubmitChanges}
                             >
                                 Сохранить
                             </button>
