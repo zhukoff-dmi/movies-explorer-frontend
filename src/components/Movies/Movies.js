@@ -8,7 +8,6 @@ import Footer from '../Footer/Footer'
 function Movies({
     movies,
     loggedIn,
-    onMenuBurgerClick,
     onSaveClick,
     onDeleteClick,
     onSubmit,
@@ -20,7 +19,6 @@ function Movies({
     return (
         <main>
             <Header
-                onMenuBurgerClick={onMenuBurgerClick}
                 loggedIn={loggedIn}
             />
 

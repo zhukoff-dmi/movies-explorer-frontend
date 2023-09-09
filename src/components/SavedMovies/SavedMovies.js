@@ -6,7 +6,6 @@ import Footer from '../Footer/Footer';
 
 
 function SavedMovies({
-    onMenuBurgerClick,
     loggedIn,
     savedMovies,
     onDeleteClick,
@@ -29,7 +28,6 @@ function SavedMovies({
     return (
         <main>
             <Header
-                onMenuBurgerClick={onMenuBurgerClick}
                 loggedIn={loggedIn}
             />
 
