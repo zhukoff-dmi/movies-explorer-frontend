@@ -22,7 +22,7 @@ function NavHeader(props) {
                             <p className="nav-header__profile-link-text">Аккаунт</p>
                         </NavLink>
                     </div>
-                    <div className="nav-header__menu" onClick={props?.onMenuBurgerClick}></div>
+                    <div className="nav-header__menu" onClick={props.onMenuBurgerClick}></div>
                 </nav>
             </>
         )

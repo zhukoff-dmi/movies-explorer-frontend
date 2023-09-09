@@ -57,14 +57,17 @@ function App() {
 
   //проверка токена
   async function tokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem('jwt');
+    console.log(jwt)
     if (jwt) {
       try {
         const res = await Auth.checkToken(jwt);
+        console.log(res)
         if (res) {
           setLoggedIn(true);
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
+          console.log(userData);
         }
       } catch (err) {
         setErrorPopup(true);
@@ -90,7 +93,7 @@ function App() {
   async function handleLoginSubmit(userData) {
     try {
       const res = await Auth.signIn(userData);
-      localStorage.setItem("jwt", res.token);
+      localStorage.setItem('jwt', res.token);
       const user = await mainApi.getUserInfo();
       setCurrentUser(user);
       setLoggedIn(true);
