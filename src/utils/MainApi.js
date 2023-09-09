@@ -6,8 +6,8 @@ export class MainApi {
             throw new Error("user not loged in")
         }
         return this._instance ||     (new MainApi({
-            baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
-            // baseUrl: 'http://localhost:3000',
+            // baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
+            baseUrl: 'http://localhost:3000',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${jwt}`

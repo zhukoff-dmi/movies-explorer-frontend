@@ -25,7 +25,7 @@ import errorImage from '../../images/error-image.svg';
 
 function App() {
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(1); // 1 there is a third state for not redirect to signin before load and check auth, also all required requests should be checked with strict eq ====
   const [isSucessPopup, setSuccesPopup] = useState(false);
   const [isErrorPopup, setErrorPopup] = useState(false);
   const [shortsActive, setShortsActive] = useState(false);
@@ -58,22 +58,26 @@ function App() {
   //проверка токена
   async function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
-    console.log(jwt)
     if (jwt) {
       try {
         const res = await Auth.checkToken(jwt);
-        const mainApi = MainApi.getInstance()
-        console.log(res)
+        
         if (res) {
+        const mainApi = MainApi.getInstance()
+
           setLoggedIn(true);
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
           console.log(userData);
         }
+        console.log({tokenCheck:isLoggedIn, res})
       } catch (err) {
-        setErrorPopup(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
+        setLoggedIn(false);
+        setCurrentUser({})
+        localStorage.removeItem('jwt')
+        // setErrorPopup(true);
+        // setErrorText(`Ошибка ${err}`);
+        console.error(err);
       }
     }
   };
@@ -301,7 +305,7 @@ function App() {
           console.log(err);
         })
     }
-  }, [currentUser]);
+  }, [currentUser, isLoggedIn, shortsActive]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
