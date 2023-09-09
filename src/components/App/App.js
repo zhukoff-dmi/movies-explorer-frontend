@@ -16,7 +16,7 @@ import InfoTooltip from '../infoTooltip/InfoTooltip';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 //api
-import mainApi from '../../utils/MainApi';
+import { MainApi } from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import * as Auth from '../../utils/Auth';
 //images
@@ -62,6 +62,7 @@ function App() {
     if (jwt) {
       try {
         const res = await Auth.checkToken(jwt);
+        const mainApi = MainApi.getInstance()
         console.log(res)
         if (res) {
           setLoggedIn(true);
@@ -94,6 +95,7 @@ function App() {
     try {
       const res = await Auth.signIn(userData);
       localStorage.setItem('jwt', res.token);
+      const mainApi = MainApi.getInstance()
       const user = await mainApi.getUserInfo();
       setCurrentUser(user);
       setLoggedIn(true);
@@ -122,6 +124,7 @@ function App() {
   //обновляем данные профиля
   async function handleUpdateUser(userData) {
     try {
+      const mainApi = MainApi.getInstance()
       const updateUserData = await mainApi.updateUserData(userData);
       setCurrentUser(updateUserData);
       setSuccesPopup(true);
@@ -136,6 +139,7 @@ function App() {
   //добовляем понравившийся фильм
   async function handleSaveMovie(movie) {
     try {
+      const mainApi = MainApi.getInstance()
       const addMovie = await mainApi.addNewMovie(movie);
       const updateMovies = [addMovie, ...savedMovies];
       localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
@@ -150,6 +154,8 @@ function App() {
   //удаляем фильм из избранного 
   async function handleDeleteMovie(movie) {
     try {
+      const mainApi = MainApi.getInstance()
+
       if (location.pathname === '/movies') {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
 
@@ -252,7 +258,9 @@ function App() {
   };
 
   useEffect(() => {
+    //TODO try catch
     if (isLoggedIn === true) {
+      const mainApi = MainApi.getInstance()
       setLoadingMovies(true);
       mainApi
         .getMyMovies()

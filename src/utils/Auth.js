@@ -1,4 +1,6 @@
 export const BASE_URL = "https://api.zhukoffdmi.nomoreparties.co";
+// export const BASE_URL = 'http://localhost:3000';
+
 
 const getJson = (res) => {
     if (res.ok) {

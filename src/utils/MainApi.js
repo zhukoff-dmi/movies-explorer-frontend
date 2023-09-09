@@ -1,9 +1,23 @@
-class MainApi {
+export class MainApi {
+    static _instance;
+    static getInstance() {
+        const jwt = localStorage.getItem('jwt')
+        if(!jwt) {
+            throw new Error("user not loged in")
+        }
+        return this._instance ||     (new MainApi({
+            baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
+            // baseUrl: 'http://localhost:3000',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${jwt}`
+            }}))
+    }
     constructor(options) {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
-
+    
     //отчет сервера
     _getJson(res) {
         if (res.ok) {
@@ -74,13 +88,3 @@ class MainApi {
         })
     }
 }
-
-const mainApi = new MainApi({
-    baseUrl: 'https://api.zhukoffdmi.nomoreparties.co',
-    headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-    }
-});
-
-export default mainApi;
