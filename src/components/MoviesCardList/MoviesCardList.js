@@ -13,7 +13,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
         const screenWidth = window.innerWidth;
         if (screenWidth >= 1280) {
             setVisibleCards((prevVisibleCards) => prevVisibleCards + 3)
-        } else if (screenWidth >= 768 && screenWidth < 1280) {
+        } else if (screenWidth >= 768 && screenWidth < 1150) {
             setVisibleCards((prevVisibleCards) => prevVisibleCards + 2)
         } else if (screenWidth >= 320 && screenWidth < 768) {
             setVisibleCards((prevVisibleCards) => prevVisibleCards + 2)
@@ -27,7 +27,7 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
     useEffect(() => {
         function handleResize() {
             const screenWidth = window.innerWidth;
-            if (screenWidth >= 768 && screenWidth < 1280) {
+            if (screenWidth >= 768 && screenWidth < 1150) {
                 setVisibleCards(8);
             } else if (screenWidth > 320 && screenWidth < 768) {
                 setVisibleCards(5);

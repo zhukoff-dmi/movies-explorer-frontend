@@ -58,7 +58,7 @@
     padding-top: 90px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1150px) {
     .movies {
         padding: 77px 30px 0px 30px;
     }
@@ -79,9 +79,9 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 710px) {
     .movies {
-        padding: 48px 10px;
+        padding: 48px 30px;
         padding-bottom: 30px;
     }
 
@@ -99,5 +99,11 @@
     .more {
         padding: 78px 30px;
         padding-bottom: 64px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .movies {
+        padding: 48px 10px;
     }
 }
