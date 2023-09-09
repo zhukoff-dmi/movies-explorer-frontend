@@ -26,7 +26,7 @@ import Preloader from '../Preloader/Preloader';
 
 function App() {
 
-  const [isLoggedIn, setLoggedIn] = useState(1); // 1 there is a third state for not redirect to signin before load and check auth, also all required requests should be checked with strict eq ====
+  const [isLoggedIn, setLoggedIn] = useState(1); 
   const [isSucessPopup, setSuccesPopup] = useState(false);
   const [isErrorPopup, setErrorPopup] = useState(false);
   const [shortsActive, setShortsActive] = useState(false);
@@ -65,10 +65,9 @@ function App() {
         
         if (res) {
         const mainApi = MainApi.getInstance()
-
-          setLoggedIn(true);
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
+          setLoggedIn(true);
           console.log(userData);
           return;
         }

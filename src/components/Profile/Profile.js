@@ -104,7 +104,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
                             noValidate
                         />
                     </div>
-                    <span className={`profile__validation-error ${isNameValid(name) ? '' : 'profile__error_active'}`}>{nameError}</span>
+                    <span className={`profile__validation-error ${isNameValid(name) ? '' : 'profile__validation-error_active'}`}>{nameError}</span>
                     <div className="profile__input-container">
                         <p className="profile__input-name">E-mail</p>
                         <input
@@ -119,7 +119,7 @@ function Profile({ currentUser, onSubmit, onSignOut, loggedIn, onMenuBurgerClick
                             noValidate
                         />
                     </div>
-                    <span className={`profile__validation-error ${isEmailValid(email) ? '' : 'profile__error_active'}`}>{emailError}</span>
+                    <span className={`profile__validation-error ${isEmailValid(email) ? '' : 'profile__validation-error_active'}`}>{emailError}</span>
                     {isEditUser ?
                         <div>
                             <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>
