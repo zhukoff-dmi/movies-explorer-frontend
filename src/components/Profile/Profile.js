@@ -46,6 +46,8 @@ function Profile({
           email: email
         });
         setSubmitActive(false);
+        setIsEditUser(false)
+
       }
     } else {
       setErrorText('Веденные данные не должны совпадать с текущими');
