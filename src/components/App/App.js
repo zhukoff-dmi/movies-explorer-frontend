@@ -182,19 +182,9 @@ function App() {
     if (location.pathname === '/movies') {
       const state = !shortsActive;
       setShortsActive(state);
-
       localStorage.setItem('shortsActive', JSON.stringify(state));
-      // const searchedMovies = JSON.parse(localStorage.getItem('searchedMovies'));
-      // const filtrateMovies = filterShorts(searchedMovies, state);
-      // const assortMovies = sortMovies(filtrateMovies, savedMovies);
-      // setMovies(assortMovies);
-      // setLoadingMovies(false);
     } else if (location.pathname === '/saved-movies') {
       setSavedShortsActive(!savedShortsActive);
-      //
-      // const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
-      // const filtrateMovies = filterShorts(userMovies, state);
-      // setSavedMovies(filtrateMovies);
     }
 
   };
@@ -223,27 +213,29 @@ function App() {
     tokenCheck();
   }, []);
 
-  //поиск фильмов
+  function searchBy(movies, keyword) {
+    const key = new RegExp(keyword, 'gi');
+    return movies.filter(
+      (item) => key.test(item.nameRU) || key.test(item.nameEN)
+    );
+  }
+
+//поиск фильмов
   async function handleSearchMovies(keyword) {
     try {
-      const key = new RegExp(keyword, 'gi');
       if (location.pathname === '/movies') {
         setLoadingMovies(true);
         const movies = await moviesApi.getInitialMovies();
-        const findMovies = movies.filter(
-          (item) => key.test(item.nameRU) || key.test(item.nameEN)
-        );
+        const findMovies = searchBy(movies, keyword);
         const sortedMovies = sortMovies(findMovies, savedMovies);
         const filteredMovies = filterShorts(sortedMovies, shortsActive);
-        localStorage.setItem('searchedMovies', JSON.stringify(sortedMovies));
+        localStorage.setItem('searchedMovies', JSON.stringify(filteredMovies));
         setMovies((filteredMovies) || []);
         setLoadingMovies(false);
       } else if (location.pathname === '/saved-movies') {
         setLoadingSavedMovies(true);
         const saveUserMovies = JSON.parse(localStorage.getItem('savedMovies'));
-        const findMovies = saveUserMovies.filter(
-          (item) => key.test(item.nameRU) || key.test(item.nameEN)
-        );
+        const findMovies = searchBy(saveUserMovies, keyword);
         setSavedMovies(filterShorts(findMovies, savedShortsActive) || []);
         setLoadingSavedMovies(false);
       }
@@ -264,14 +256,18 @@ function App() {
         .then((savedMovies) => {
           const userMovies = savedMovies;
           localStorage.setItem('savedMovies', JSON.stringify(userMovies));
+          const keyword = JSON.parse(
+            localStorage.getItem('inputMovies') || '""')
           setSavedMovies(userMovies);
 
           if (localStorage.getItem('searchedMovies')) {
+
             const searchMovies = JSON.parse(
               localStorage.getItem('searchedMovies'));
             const assortMovies = sortMovies(searchMovies, userMovies);
             const filtrateMovies = filterShorts(assortMovies, shortsActive);
-            setMovies(filtrateMovies);
+            const searchedMovies = searchBy(filtrateMovies,keyword)
+            setMovies(searchedMovies);
           }
           setLoadingMovies(false);
         })
