@@ -49,6 +49,7 @@ function App() {
     setSuccesPopup(false);
     setErrorPopup(false);
   }
+
   //проверка токена
   async function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
@@ -69,7 +70,7 @@ function App() {
         console.error(err);
       }
     }
-      setLoggedIn(false);
+    setLoggedIn(false);
 
   }
 
@@ -157,7 +158,8 @@ function App() {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
 
         await mainApi.deleteMovie(selectMovie._id);
-        const updateMovies = savedMovies.slice().filter(m => m._id !== selectMovie._id);
+        const updateMovies = savedMovies.slice()
+          .filter(m => m._id !== selectMovie._id);
 
         localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
         setSavedMovies(updateMovies);
@@ -217,7 +219,6 @@ function App() {
     setMovies(assortMovies);
   }, [savedMovies]);
 
-
   useEffect(() => {
     tokenCheck();
   }, []);
@@ -269,13 +270,13 @@ function App() {
             const searchMovies = JSON.parse(
               localStorage.getItem('searchedMovies'));
             const assortMovies = sortMovies(searchMovies, userMovies);
-                const filtrateMovies = filterShorts(assortMovies, shortsActive);
-                setMovies(filtrateMovies);
+            const filtrateMovies = filterShorts(assortMovies, shortsActive);
+            setMovies(filtrateMovies);
           }
-                setLoadingMovies(false);
-              })
-              .catch((err) => {
-                setErrorPopup(true);
+          setLoadingMovies(false);
+        })
+        .catch((err) => {
+          setErrorPopup(true);
           setErrorText(`${err}`);
           console.log(err);
         });
@@ -373,7 +374,7 @@ function App() {
         <Route
           path="*"
           element={
-            <NotFoundPage />
+            <NotFoundPage/>
           }
         />
       </Routes>
