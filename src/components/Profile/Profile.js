@@ -28,7 +28,7 @@ function Profile({
   };
 
   const isEmailValid = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i;
     return emailRegex.test(email);
   };
 
@@ -60,6 +60,7 @@ function Profile({
   useEffect(() => {
     if (name !== currentUser.name || email !== currentUser.email) {
       if (isEmailValid(email) && isNameValid(name)) {
+        console.log(isEmailValid(email) && isNameValid(name));
         setSubmitActive(true);
       } else {
         setSubmitActive(false);
