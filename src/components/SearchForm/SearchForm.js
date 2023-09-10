@@ -51,6 +51,7 @@ function SearchForm({ onSubmit, onToggleClick, shortsActive }) {
             Поиск
           </button>
         </div>
+        <span className={`search-form__error ${isSubmitActive ? '' : 'search-form__error_active'}`}>Нужно ввести ключевое слово</span>
       </form>
       <FilterCheckbox
         shortsActive={shortsActive}
