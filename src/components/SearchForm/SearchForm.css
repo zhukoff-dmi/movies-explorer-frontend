@@ -34,6 +34,7 @@
 
 .search-form__input:focus {
     outline: 1px solid aliceblue;
+    border-radius: 8px;
 }
 
 .search-form__button {

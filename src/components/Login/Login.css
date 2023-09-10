@@ -49,6 +49,7 @@
     padding: 0;
     padding-bottom: 6px;
     margin: 0;
+    padding-left: 2px;
 }
 
 .login__input:focus {
