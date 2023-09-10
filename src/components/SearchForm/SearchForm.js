@@ -1,29 +1,31 @@
-import React from "react";
+import React from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function SearchForm({ onSubmit, onToggleClick, /*shortsActive*/ }) {
+function SearchForm({ onSubmit, onToggleClick, shortsActive }) {
     const location = useLocation();
-    const [movie, setMovie] = useState('');
-
+  const [searchString, setSearchString] = useState('');
+  const [isSubmitActive, setSubmitActive] = useState(false);
     const handleMovieChange = (e) => {
-        setMovie(e.target.value);
-    }
+    setSearchString(e.target.value);
+  };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        if (location.pathname === "/movies") {
-            localStorage.setItem('inputMovies', JSON.stringify(movie));
+    if (localStorage.getItem('inputMovies') !== searchString) {
+      if (location.pathname === '/movies') {
+        localStorage.setItem('inputMovies', JSON.stringify(searchString));
         }
-        onSubmit(movie);
+      onSubmit(searchString);
     }
+  };
 
     useEffect(() => {
-        if (location.pathname === "/movies") {
-            const inputValue = JSON.parse(localStorage.getItem('inputMoviesValue')) || '';
-            setMovie(inputValue);
+    if (location.pathname === '/movies') {
+      const inputValue = JSON.parse(localStorage.getItem('inputMovies') || '""');
+      setSearchString(inputValue);
         }
     }, [location.pathname]);
 
@@ -38,10 +40,10 @@ function SearchForm({ onSubmit, onToggleClick, /*shortsActive*/ }) {
                         className="search-form__input"
                         type="text"
                         placeholder="Фильм"
-                        minLength={2}
-                        maxLength={40}
-                        required={true}
-                        value={movie} />
+            // minLength={2}
+            // maxLength={40}
+            // required={true}
+            value={searchString}/>
                     <button
                         className="search-form__button"
                         type="submit">
@@ -49,10 +51,11 @@ function SearchForm({ onSubmit, onToggleClick, /*shortsActive*/ }) {
                 </div>
             </form>
             <FilterCheckbox
+        shortsActive={shortsActive}
                 onToggleClick={onToggleClick}
             />
         </section>
-    )
+  );
 }
 
 export default SearchForm;

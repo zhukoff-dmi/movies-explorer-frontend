@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
-
+import Footer from '../Footer/Footer';
 
 function Movies({
     movies,
@@ -15,6 +14,7 @@ function Movies({
     setErrorText,
     setErrorPopupOpen,
     onToggleClick,
+                  shortsActive = false
 }) {
     return (
         <main>
@@ -25,6 +25,7 @@ function Movies({
             <SearchForm
                 onSubmit={onSubmit}
                 onToggleClick={onToggleClick}
+        shortsActive={shortsActive}
             />
             <MoviesCardList
                 movies={movies}

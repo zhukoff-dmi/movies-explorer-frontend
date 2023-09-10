@@ -10,7 +10,7 @@ function Login(props) {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-    const [isSubmitActive, setSubmitActive] = useState();
+    const [isSubmitActive, setSubmitActive] = useState(false);
 
     const navigate = useNavigate();
 
@@ -92,9 +92,6 @@ function Login(props) {
                     className="login__input"
                     value={email}
                     type="email"
-                    minLength={4}
-                    maxLength={30}
-                    required
                 />
                 <span className={`login__error ${isEmailValid(email) ? '' : 'login__error_active'}`}>{emailError}</span>
                 <p className="login__input-name">Пароль</p>
@@ -103,11 +100,9 @@ function Login(props) {
                     className="login__input"
                     type="password"
                     value={password}
-                    minLength={8}
-                    required
                 />
                 <span className={`login__error ${isPasswordValid(password) ? '' : 'login__error_active'}`}>{passwordError}</span>
-                <button className={`${isSubmitActive ? "login__submit-button" : 'login__submit-button_inactive'}`} type="submit">Войти</button>
+                <button disabled={!isSubmitActive} className='login__submit-button' type="submit">Войти</button>
             </form>
             <div className="login__bottom">
                 <h3 className="login__subtitle">Ещё не зарегистрированы?</h3>

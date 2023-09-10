@@ -110,11 +110,8 @@ function Register(props) {
                 <input
                     className="register__input"
                     type="text"
-                    minLength={2}
-                    maxLength={30}
                     onChange={handleNameChange}
                     value={name}
-                    required
                 />
                 <span className={`register__error ${isNameValid(name) ? '' : 'register__error_active'}`}>{nameError}</span>
                 <p className="register__input-name">E-mail</p>
@@ -123,9 +120,6 @@ function Register(props) {
                     type="email"
                     onChange={handleEmailChange}
                     value={email}
-                    minLength={4}
-                    maxLength={30}
-                    required
                 />
                 <span className={`register__error ${isEmailValid(email) ? '' : 'register__error_active'}`}>{emailError}</span>
                 <p className="register__input-name">Пароль</p>
@@ -138,7 +132,7 @@ function Register(props) {
                     value={password}
                 />
                 <span className={`register__error ${isPasswordValid(password) ? '' : 'register__error_active'}`}>{passwordError}</span>
-                <button className={`${isSubmitActive ? 'register__submit-button' : 'register__submit-button_inactive'}`} type="submit">Зарегистрироваться</button>
+                <button disabled={!isSubmitActive} className='register__submit-button' type="submit">Зарегистрироваться</button>
             </form>
             <div className="register__bottom">
                 <h3 className="register__subtitle">Уже зарегистрированы?</h3>

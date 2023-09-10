@@ -88,7 +88,7 @@
     margin-top: 127px;
 }
 
-.register__submit-button_inactive {
+.register__submit-button:disabled {
     padding: 0;
     width: 396px;
     height: 45px;
@@ -103,9 +103,10 @@
     line-height: normal;
     margin-top: 127px;
     opacity: .6;
+    cursor: default;
 }
 
-.register__submit-button:hover {
+.register__submit-button:hover:not(:disabled) {
     opacity: .7;
 }
 

@@ -1,7 +1,7 @@
 import './App.css';
 //react
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 //context
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 //components
@@ -25,10 +25,11 @@ import Preloader from '../Preloader/Preloader';
 
 function App() {
 
-  const [isLoggedIn, setLoggedIn] = useState(1); 
+  const [isLoggedIn, setLoggedIn] = useState(1);
   const [isSucessPopup, setSuccesPopup] = useState(false);
   const [isErrorPopup, setErrorPopup] = useState(false);
-  const [shortsActive, setShortsActive] = useState(false);
+  const [shortsActive, setShortsActive] = useState(
+    JSON.parse(localStorage.getItem('shortsActive') || 'false'));
   const [isLoadingMovies, setLoadingMovies] = useState(false);
   const [isLoadingSavedMovies, setLoadingSavedMovies] = useState(false);
   const [savedShortsActive, setSavedShortsActive] = useState(false);
@@ -46,7 +47,7 @@ function App() {
 
   function closeAllPopups() {
     setSuccesPopup(false);
-    setErrorPopup(false)
+    setErrorPopup(false);
   }
   //проверка токена
   async function tokenCheck() {
@@ -54,9 +55,9 @@ function App() {
     if (jwt) {
       try {
         const res = await Auth.checkToken(jwt);
-        
+
         if (res) {
-        const mainApi = MainApi.getInstance()
+          const mainApi = MainApi.getInstance();
           const userData = await mainApi.getUserInfo();
           setCurrentUser(userData);
           setLoggedIn(true);
@@ -64,13 +65,13 @@ function App() {
         }
       } catch (err) {
         setLoggedIn(false);
-        localStorage.removeItem('jwt')
+        localStorage.removeItem('jwt');
         console.error(err);
       }
     }
       setLoggedIn(false);
-    
-  };
+
+  }
 
   //регистрация
   async function handleRegisterSubmit(userData) {
@@ -81,15 +82,15 @@ function App() {
       setErrorPopup(true);
       setErrorText(`${err}`);
       console.log(err);
-    };
-  };
+    }
+  }
 
   //авторизация
   async function handleLoginSubmit(userData) {
     try {
       const res = await Auth.signIn(userData);
       localStorage.setItem('jwt', res.token);
-      const mainApi = MainApi.getInstance()
+      const mainApi = MainApi.getInstance();
       const user = await mainApi.getUserInfo();
       setCurrentUser(user);
       setLoggedIn(true);
@@ -98,13 +99,13 @@ function App() {
       setErrorPopup(true);
       setErrorText(`${err}`);
       console.log(err);
-    };
-  };
+    }
+  }
 
   //выйти из аккаунта
   function handleSignOutSubmit() {
     localStorage.removeItem('searchedMovies');
-    localStorage.removeItem('inputMoviesValue');
+    localStorage.removeItem('inputMovies');
     localStorage.removeItem('shortsActive');
     localStorage.removeItem('jwt');
     localStorage.removeItem('savedMovies');
@@ -112,28 +113,30 @@ function App() {
     setLoggedIn(false);
     setSavedMovies([]);
     setMovies([]);
-    navigate("/", { replace: true });
-  };
+    navigate('/', { replace: true });
+  }
 
   //обновляем данные профиля
   async function handleUpdateUser(userData) {
+    console.log(userData);
     try {
-      const mainApi = MainApi.getInstance()
+      const mainApi = MainApi.getInstance();
       const updateUserData = await mainApi.updateUserData(userData);
       setCurrentUser(updateUserData);
       setSuccesPopup(true);
       setSuccessText('Вы успешно обновили данные');
     } catch (err) {
       setErrorPopup(true);
-      setErrorText(`Ошибка ${err}`)
+      setErrorText(`Ошибка ${err}`);
       console.log(err);
-    };
-  };
+    }
+
+  }
 
   //добовляем понравившийся фильм
   async function handleSaveMovie(movie) {
     try {
-      const mainApi = MainApi.getInstance()
+      const mainApi = MainApi.getInstance();
       const addMovie = await mainApi.addNewMovie(movie);
       const updateMovies = [addMovie, ...savedMovies];
       localStorage.setItem('savedMovies', JSON.stringify(updateMovies));
@@ -145,10 +148,10 @@ function App() {
     }
   }
 
-  //удаляем фильм из избранного 
+  //удаляем фильм из избранного
   async function handleDeleteMovie(movie) {
     try {
-      const mainApi = MainApi.getInstance()
+      const mainApi = MainApi.getInstance();
 
       if (location.pathname === '/movies') {
         const selectMovie = savedMovies.find(m => m.movieId === movie.id);
@@ -172,27 +175,26 @@ function App() {
     }
   }
 
-  //кнопка коротметражки 
+  //кнопка коротметражки
   const handleToggleClick = () => {
     if (location.pathname === '/movies') {
-      setLoadingMovies(true);
       const state = !shortsActive;
       setShortsActive(state);
 
       localStorage.setItem('shortsActive', JSON.stringify(state));
-      const searcheMovies = JSON.parse(localStorage.getItem('searchMovies'));
-      const filtrateMovies = filterShorts(searcheMovies, state);
-      const assortMovies = sortMovies(filtrateMovies, savedMovies);
-      setMovies(assortMovies);
-      setLoadingMovies(false);
+      // const searchedMovies = JSON.parse(localStorage.getItem('searchedMovies'));
+      // const filtrateMovies = filterShorts(searchedMovies, state);
+      // const assortMovies = sortMovies(filtrateMovies, savedMovies);
+      // setMovies(assortMovies);
+      // setLoadingMovies(false);
     } else if (location.pathname === '/saved-movies') {
-      const state = !savedShortsActive;
-      setSavedShortsActive(state);
+      setSavedShortsActive(!savedShortsActive);
+      //
+      // const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
+      // const filtrateMovies = filterShorts(userMovies, state);
+      // setSavedMovies(filtrateMovies);
+    }
 
-      const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
-      const filtrateMovies = filterShorts(userMovies, state);
-      setSavedMovies(filtrateMovies);
-    };
   };
 
   //фильтрация фильмов по времени "короткометражки"
@@ -202,13 +204,12 @@ function App() {
 
   //сортировка понравившехся фильмов
   function sortMovies(movies, savedMovies) {
-    const assortMovies = movies?.map((movie) => {
+    return movies?.map((movie) => {
       movie.isAdded = savedMovies.some(
         (savedMovies) => savedMovies.movieId === movie.id
       );
       return movie;
-    })
-    return assortMovies;
+    });
   }
 
   useEffect(() => {
@@ -224,16 +225,17 @@ function App() {
   //поиск фильмов
   async function handleSearchMovies(keyword) {
     try {
-      const key = new RegExp(keyword, "gi");
+      const key = new RegExp(keyword, 'gi');
       if (location.pathname === '/movies') {
         setLoadingMovies(true);
         const movies = await moviesApi.getInitialMovies();
         const findMovies = movies.filter(
           (item) => key.test(item.nameRU) || key.test(item.nameEN)
         );
-        const chekMovies = sortMovies(findMovies, savedMovies);
-        localStorage.setItem('searchedMovies', JSON.stringify(chekMovies));
-        setMovies(filterShorts(chekMovies) || []);
+        const sortedMovies = sortMovies(findMovies, savedMovies);
+        const filteredMovies = filterShorts(sortedMovies, shortsActive);
+        localStorage.setItem('searchedMovies', JSON.stringify(sortedMovies));
+        setMovies((filteredMovies) || []);
         setLoadingMovies(false);
       } else if (location.pathname === '/saved-movies') {
         setLoadingSavedMovies(true);
@@ -249,12 +251,12 @@ function App() {
       setErrorText(`${err}`);
       console.log(err);
     }
-  };
+  }
 
   useEffect(() => {
     //TODO try catch
     if (isLoggedIn === true) {
-      const mainApi = MainApi.getInstance()
+      const mainApi = MainApi.getInstance();
       setLoadingMovies(true);
       mainApi
         .getMyMovies()
@@ -263,39 +265,24 @@ function App() {
           localStorage.setItem('savedMovies', JSON.stringify(userMovies));
           setSavedMovies(userMovies);
 
-          if (localStorage.getItem('searchMovies')) {
-            const state = JSON.parse(localStorage.getItem('shortsActive'));
-            setShortsActive((state) || false);
-
-            const searchMovies = JSON.parse(localStorage.getItem('searchMovies'));
+          if (localStorage.getItem('searchedMovies')) {
+            const searchMovies = JSON.parse(
+              localStorage.getItem('searchedMovies'));
             const assortMovies = sortMovies(searchMovies, userMovies);
-            const filtrateMovies = filterShorts(assortMovies, state);
-            setMovies(filtrateMovies);
-            setLoadingMovies(false)
-          } else {
-            moviesApi
-              .getInitialMovies()
-              .then((movies) => {
-                const assortMovies = sortMovies(movies, userMovies);
-                localStorage.setItem('searchedMovies', JSON.stringify(assortMovies));
                 const filtrateMovies = filterShorts(assortMovies, shortsActive);
                 setMovies(filtrateMovies);
+          }
                 setLoadingMovies(false);
               })
               .catch((err) => {
                 setErrorPopup(true);
-                setErrorText(`${err}`)
-                console.log(err);
-              })
-          }
-        })
-        .catch((err) => {
-          setErrorPopup(true);
-          setErrorText(`${err}`)
+          setErrorText(`${err}`);
           console.log(err);
-        })
+        });
+    } else if (isLoggedIn === false) {
+      handleSignOutSubmit();
     }
-  }, [currentUser, isLoggedIn, shortsActive]);
+  }, [isLoggedIn, shortsActive, shortsActive, savedShortsActive]);
 
   return isLoggedIn === 1 ? <Preloader/> : (
     <CurrentUserContext.Provider value={currentUser}>
@@ -410,6 +397,6 @@ function App() {
 
     </CurrentUserContext.Provider>
   );
-};
+}
 
 export default App;
