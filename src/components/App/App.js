@@ -196,8 +196,9 @@ function App() {
 
   //сортировка понравившехся фильмов
   function sortMovies(movies, savedMovies) {
+    const saveUserMovies = JSON.parse(localStorage.getItem('savedMovies') || "[]") ;
     return movies?.map((movie) => {
-      movie.isAdded = savedMovies.some(
+      movie.isAdded = saveUserMovies.some(
         (savedMovies) => savedMovies.movieId === movie.id
       );
       return movie;

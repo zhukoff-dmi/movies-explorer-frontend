@@ -12,6 +12,7 @@
     padding: 10px;
     margin: 0 auto;
     margin-bottom: 26px;
+    position: relative;
 }
 
 .search__input {
@@ -38,6 +39,7 @@
 }
 
 .search-form__error {
+    position: absolute;
     margin: 6px 0 6px;
     height: 12px;
     font-weight: 400;
@@ -45,6 +47,8 @@
     line-height: 12px;
     color: #FF3055;
     visibility: hidden;
+    bottom: 4px;
+    left: 26px;
 }
 
 .search-form__error_active {
@@ -117,5 +121,9 @@
         line-height: 16px;
         padding: 12px 6px;
         min-width: 10px;
+    }
+    .search-form__error {
+        left: 13px;
+        bottom: -2px;
     }
 }
