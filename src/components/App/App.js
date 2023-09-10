@@ -14,6 +14,7 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import InfoTooltip from '../infoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import NotAuthorizedRoute from '../NotAuthorizedRoute/NotAuthorizedRoute'
 //api
 import { MainApi } from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
@@ -110,10 +111,12 @@ function App() {
     localStorage.removeItem('shortsActive');
     localStorage.removeItem('jwt');
     localStorage.removeItem('savedMovies');
+    localStorage.removeItem('allMovies');
     setCurrentUser({});
     setLoggedIn(false);
     setSavedMovies([]);
     setMovies([]);
+    setShortsActive(false)
     navigate('/', { replace: true });
   }
 
@@ -297,7 +300,8 @@ function App() {
         <Route
           path="/signup"
           element={
-            <Register
+            <NotAuthorizedRoute
+              element={Register}
               onSubmit={handleRegisterSubmit}
               loggedIn={isLoggedIn}
             />
@@ -307,7 +311,8 @@ function App() {
         <Route
           path="/signin"
           element={
-            <Login
+            <NotAuthorizedRoute
+              element={Login}
               onSubmit={handleLoginSubmit}
               loggedIn={isLoggedIn}
             />
