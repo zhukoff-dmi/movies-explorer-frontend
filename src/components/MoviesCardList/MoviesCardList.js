@@ -19,35 +19,32 @@ function MoviesCardList({ isLoading, onSaveClick, movies, onDeleteClick, setErro
             setVisibleCards((prevVisibleCards) => prevVisibleCards + 2)
         }
     }
-    
-    useEffect(() => {
-        setVisibleCards(12);
-    }, [isLoading]);
+
 
     useEffect(() => {
         function handleResize() {
             const screenWidth = window.innerWidth;
-            if (screenWidth >= 768 && screenWidth < 1150) {
-                setVisibleCards(8);
-            } else if (screenWidth > 320 && screenWidth < 768) {
-                setVisibleCards(5);
+            if (screenWidth >= 1280) {
+                setVisibleCards(12)
+            } else if (screenWidth >= 768 && screenWidth < 1150) {
+                setVisibleCards(8)
+            } else if (screenWidth >= 320 && screenWidth < 768) {
+                setVisibleCards(5)
             }
         }
         window.addEventListener("resize", handleResize);
-
+        handleResize()
         return () => {
             window.removeEventListener("resize", handleResize);
         }
-    }, []);
-
-
+    }, [isLoading]);
 
     return (
         <div className="movies">
             {isLoading ? (
                 <Preloader />
             ) : (
-                (movies && movies.length > 0) ? 
+                (movies && movies.length > 0) ?
                     <div className="movies__card-list">
                         {movies.slice(0, visibleCards).map((movie) => (
                             <MoviesCard

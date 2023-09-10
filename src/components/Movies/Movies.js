@@ -5,41 +5,41 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function Movies({
-    movies,
-    loggedIn,
-    onSaveClick,
-    onDeleteClick,
-    onSubmit,
-    isLoading,
-    setErrorText,
-    setErrorPopupOpen,
-    onToggleClick,
+                  movies,
+                  loggedIn,
+                  onSaveClick,
+                  onDeleteClick,
+                  onSubmit,
+                  isLoading,
+                  setErrorText,
+                  setErrorPopupOpen,
+                  onToggleClick,
                   shortsActive = false
-}) {
-    return (
-        <main>
-            <Header
-                loggedIn={loggedIn}
-            />
+                }) {
+  return (
+    <main>
+      <Header
+        loggedIn={loggedIn}
+      />
 
-            <SearchForm
-                onSubmit={onSubmit}
-                onToggleClick={onToggleClick}
+      <SearchForm
+        onSubmit={onSubmit}
+        onToggleClick={onToggleClick}
         shortsActive={shortsActive}
-            />
-            <MoviesCardList
-                movies={movies}
-                isLoading={isLoading}
-                onSaveClick={onSaveClick}
-                onDeleteClick={onDeleteClick}
-                setErrorPopupOpen={setErrorPopupOpen}
-                setErrorText={setErrorText}
-            />
+      />
+      <MoviesCardList
+        movies={movies}
+        isLoading={isLoading}
+        onSaveClick={onSaveClick}
+        onDeleteClick={onDeleteClick}
+        setErrorPopupOpen={setErrorPopupOpen}
+        setErrorText={setErrorText}
+      />
 
-            <Footer />
+      <Footer/>
 
-        </main>
-    );
+    </main>
+  );
 }
 
 export default Movies;
