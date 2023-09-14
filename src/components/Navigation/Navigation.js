@@ -1,22 +1,20 @@
-import { NavLink, useLocation } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = (props) => {
-    const location = useLocation();
-    const isActiveLink = (path) => {
-        return location.pathname === path ? "navigation__link_active" : "";
-    }
+    
     return (
         <nav className={`navigation ${props.isOpen ? "navigation_opened" : ""}`}>
             <div className="navigation__overlay"></div>
             <button className="navigation__close" onClick={props.onClose}></button>
-            <NavLink to="/" className={`navigation__link ${isActiveLink("/")}`}
+            <NavLink to="/" className={({ isActive }) => isActive ? 'navigation__link_active' : "navigation__link"}
                 onClick={props.onClose}
             >Главная</NavLink>
-            <NavLink to="/movies" className={`navigation__link ${isActiveLink("/movies")}`}
+            <NavLink to="/movies" className={({ isActive }) => isActive ? 'navigation__link_active' : "navigation__link"}
                 onClick={props.onClose}
             >Фильмы</NavLink>
-            <NavLink to="/saved-movies" className={`navigation__link ${isActiveLink("/saved-movies")}`}
+            <NavLink to="/saved-movies" className={({ isActive }) => isActive ? 'navigation__link_active' : "navigation__link"}
                 onClick={props.onClose}
             >Сохранённые фильмы</NavLink>
             <NavLink to="/profile" className="navigation__link"

@@ -49,10 +49,12 @@
     padding: 0;
     padding-bottom: 5px;
     margin: 0;
+    padding-left: 2px;
 }
 
 .register__input:focus {
-    outline: 1px solid aliceblue;
+    outline: 1px solid #c0c0c0;
+    border-radius: 3px;
 }
 
 .register__error {
@@ -62,6 +64,12 @@
     font-size: 10px;
     line-height: 12px;
     color: #FF3055;
+    padding: 0;
+    visibility: hidden;
+}
+
+.register__error_active {
+    visibility: visible;
 }
 
 .register__submit-button {
@@ -81,7 +89,25 @@
     margin-top: 127px;
 }
 
-.register__submit-button:hover {
+.register__submit-button:disabled {
+    padding: 0;
+    width: 396px;
+    height: 45px;
+    background-color: #4285F4;
+    border: none;
+    border-radius: 3px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 127px;
+    opacity: .6;
+    cursor: default;
+}
+
+.register__submit-button:hover:not(:disabled) {
     opacity: .7;
 }
 

@@ -25,8 +25,6 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #424242;
-    padding-bottom: 16px;
-
 }
 
 .profile__input-container:last-of-type {
@@ -34,7 +32,7 @@
     padding: 16px 0 0 0;
 }
 
-.profile__input-label {
+.profile__input-name {
     width: 141px;
     color: #FFF;
     font-size: 11px;
@@ -43,7 +41,6 @@
 }
 
 .profile__input {
-    padding: 0;
     width: 100%;
     height: 15px;
     font-size: 11px;
@@ -53,10 +50,14 @@
     text-align: right;
     background-color: transparent;
     border: none;
+    padding: 5px;
+    margin: 6px;
+    margin-right: 0;
 }
 
 .profile__input:focus {
-    outline: 1px solid aliceblue;
+    outline: 1px solid #c0c0c0;
+    border-radius: 3px;
 }
 
 .porfile__btn-container {
@@ -89,21 +90,45 @@
     line-height: normal;
     cursor: pointer;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
 }
 
 .profile__btn-text {
     opacity: .7;
 }
 
-.profile__error-message {
+.profile__validation-error {
     display: block;
+    height: 10px;
     color: #FF004C;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
     line-height: normal;
-    padding: 0 0 20px 0;
-    margin-top: 186px;
+    padding: 0 0 8px;
+    margin: 0;
+    visibility: hidden;
+    margin-top: 2px;
+}
+
+.profile__validation-error_active {
+    visibility: visible;
+}
+
+.profile__error-message {
+    display: block;
+    height: 10px;
+    color: #FF004C;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    margin-top: 180px;
+    margin-bottom: 20px;
+    visibility: hidden;
 }
 
 .profile__submit-button {
@@ -126,13 +151,19 @@
 }
 
 .profile__submit-button_invalid {
-    background: #F8F8F8;
+    background: rgb(66, 133, 244);
     border-radius: 3px;
-    color: #C2C2C2;
-}
-
-.profile__submit-button_invalid:hover {
-    opacity: .7;
+    color: #fff;
+    width: 100%;
+    height: 45px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    opacity: .6;
 }
 
 

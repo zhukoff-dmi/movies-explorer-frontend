@@ -49,10 +49,12 @@
     padding: 0;
     padding-bottom: 6px;
     margin: 0;
+    padding-left: 2px;
 }
 
 .login__input:focus {
-    outline: 1px solid aliceblue;
+    outline: 1px solid #c0c0c0;
+    border-radius: 3px;
   }
 
 .login__error {
@@ -62,6 +64,11 @@
     font-size: 10px;
     line-height: 12px;
     color: #FF3055;
+    visibility: hidden;
+}
+
+.login__error_active {
+    visibility: visible;
 }
 
 .login__submit-button {
@@ -81,7 +88,25 @@
     margin-top: 198px;
 }
 
-.login__submit-button:hover {
+.login__submit-button:disabled {
+    padding: 0;
+    width: 396px;
+    height: 45px;
+    background-color: #4285F4;
+    border: none;
+    border-radius: 3px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 198px;
+    opacity: .6;
+    cursor: default;
+}
+
+.login__submit-button:hover:not(:disabled) {
     opacity: .7;
 }
 

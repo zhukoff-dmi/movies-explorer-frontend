@@ -1,9 +1,15 @@
+import React from "react";
 import './FilterCheckbox.css';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onToggleClick, shortsActive }) {
     return (
         <label className="checkbox">
-            <input className="checkbox__input" type="checkbox" id="checkbox" />
+            <input
+                onChange={onToggleClick}
+                className="checkbox__input"
+                type="checkbox"
+                checked={shortsActive}
+                id="checkbox" />
             <span className="checkbox__description">Короткометражки</span>
         </label>
     );
